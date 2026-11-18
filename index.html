@@ -44,8 +44,12 @@ figure{margin:0}
 .band--blue{background:var(--blue);color:var(--white)}
 .band--blue h2,.band--blue h3{color:var(--white)}
 /* the important words in every heading */
-.hl{color:var(--blue);background:linear-gradient(transparent 64%,rgba(161,124,64,.36) 64%);padding:0 .08em}
-.band--blue .hl,.on-photo .hl{color:var(--white);background:linear-gradient(transparent 64%,rgba(161,124,64,.95) 64%)}
+.hl{color:var(--blue);background:linear-gradient(transparent 64%,rgba(161,124,64,.36) 64%) no-repeat 0 0/100% 100%;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* the one motion on the page: the gold underline draws in when the heading comes into view */
+.js .hl{background-size:0% 100%;transition:background-size .9s cubic-bezier(.22,.7,.2,1) .15s}
+.js .hl.in{background-size:100% 100%}
+@media (prefers-reduced-motion:reduce){.js .hl{background-size:100% 100%;transition:none}}
+.band--blue .hl,.on-photo .hl{color:var(--white);background-image:linear-gradient(transparent 64%,rgba(161,124,64,.95) 64%)}
 .eyebrow{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7a5b22;margin-bottom:12px}
 .band--blue .eyebrow{color:var(--white)}
 .lede{font-size:18px;color:var(--muted);max-width:70ch;margin-top:14px}
@@ -109,9 +113,9 @@ figure{margin:0}
 .hero__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,37,54,.78) 0%,rgba(8,37,54,.3) 17%,rgba(8,37,54,.34) 34%,rgba(8,37,54,.8) 56%,rgba(8,37,54,.94) 100%)}
 .hero > .wrap{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-block:300px clamp(30px,3.6vw,46px)}
 .hero__copy{max-width:none;width:100%;text-align:center}
-.trio{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,37px);line-height:1.15;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin:0 0 16px;text-shadow:0 2px 18px rgba(3,20,31,.55)}
-.trio i{font-style:normal;color:var(--gold);padding:0 .12em}
-.trio b{font-weight:800;color:var(--white)}
+.trio{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,37px);line-height:1.15;letter-spacing:.07em;text-transform:uppercase;color:var(--white);margin:0 0 16px;text-shadow:0 2px 18px rgba(3,20,31,.55)}
+.trio i{font-style:normal;padding:0 .12em}
+.trio b{font-weight:800;color:var(--gold)}
 .trio span{white-space:nowrap}
 .hero h1{color:var(--white);font-size:clamp(20px,2.15vw,29px);line-height:1.3;font-weight:600;max-width:34em;margin-inline:auto}
 .hero .cta-row{margin-top:24px;justify-content:center}
@@ -494,8 +498,8 @@ details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
   <div class="hero__shade"></div>
   <div class="wrap">
     <div class="hero__copy">
-      <p class="trio"><span>Former Prosecutor <i>+</i></span> <span>Veteran <i>+</i> <b>Advocate</b></span></p>
-      <h1>Colorado Workers' Compensation and Injury Lawyers Who Protect <span class="hl">Your Case and Your Status</span></h1>
+      <p class="trio"><span><b>Former Prosecutor</b> <i>+</i></span> <span>Veteran <i>+</i> Advocate</span></p>
+      <h1><span class="hl">Colorado Workers' Compensation</span> and <span class="hl">Injury Lawyers</span> Who Protect Your Case and Your Status</h1>
       <div class="cta-row">
         <a class="btn btn--main" href="#review">Free Case Review</a>
         <a class="btn btn--phone" href="tel:+13039643200"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (303) 964-3200</a>
@@ -839,6 +843,9 @@ details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
 
 <script>
 (function(){
+  document.documentElement.classList.add('js');
+  var hls=[].slice.call(document.querySelectorAll('.hl'));
+  if('IntersectionObserver' in window){var ho=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');ho.unobserve(x.target);}});},{threshold:.6});hls.forEach(function(h){ho.observe(h);});}else{hls.forEach(function(h){h.classList.add('in');});}
   var b=document.getElementById('menuBtn'),n=document.getElementById('mobileNav');
   var hd=document.getElementById('top');function solid(){hd.classList.toggle('is-solid',window.scrollY>30||!n.hidden);}
   window.addEventListener('scroll',solid,{passive:true});
