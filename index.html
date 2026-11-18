@@ -44,12 +44,13 @@ figure{margin:0}
 .band--blue{background:var(--blue);color:var(--white)}
 .band--blue h2,.band--blue h3{color:var(--white)}
 /* the important words in every heading */
-.hl{color:var(--blue);background:linear-gradient(transparent 64%,rgba(161,124,64,.36) 64%) no-repeat 0 0/100% 100%;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-/* the one motion on the page: the gold underline draws in when the heading comes into view */
-.js .hl{background-size:0% 100%;transition:background-size .9s cubic-bezier(.22,.7,.2,1) .15s}
-.js .hl.in{background-size:100% 100%}
-@media (prefers-reduced-motion:reduce){.js .hl{background-size:100% 100%;transition:none}}
-.band--blue .hl,.on-photo .hl{color:var(--white);background-image:linear-gradient(transparent 64%,rgba(161,124,64,.95) 64%)}
+.hl{color:var(--blue);background-image:linear-gradient(var(--gold),var(--gold));background-repeat:no-repeat;background-position:0 96%;background-size:100% max(3px,.085em);padding-bottom:.1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* The one motion on the page: a thin gold line draws in under the key words, left to right, once (same method as our Coal Creek mockup) */
+@media (prefers-reduced-motion:no-preference){
+  .js .hl{background-size:0% max(3px,.085em);transition:background-size 1.3s cubic-bezier(.65,0,.35,1) .35s}
+  .js .hl.in{background-size:100% max(3px,.085em)}
+}
+.band--blue .hl,.on-photo .hl{color:var(--white)}
 .eyebrow{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7a5b22;margin-bottom:12px}
 .band--blue .eyebrow{color:var(--white)}
 .lede{font-size:18px;color:var(--muted);max-width:70ch;margin-top:14px}
@@ -171,7 +172,7 @@ input:focus{outline:3px solid rgba(19,97,138,.3);border-color:var(--blue)}
 .area__img{width:100%;aspect-ratio:16/7;object-fit:cover}
 .area__body{padding:22px 26px 24px;display:flex;flex-direction:column;flex:1}
 .area ul{list-style:none;margin:12px 0 18px;padding:0;border-top:1px solid var(--line)}
-.area li{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+.area li{display:flex;justify-content:flex-start;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
 .area li svg{width:16px;height:16px;flex:none;color:var(--gold)}
 .area .btn{align-self:flex-start;margin-top:auto}
 .areas .area--lead{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);background:var(--blue);border-color:var(--blue)}
@@ -594,10 +595,10 @@ details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
           <h3>Workers' Compensation</h3>
           <p class="lead-p">Whether you work on the books or off, you have legal rights in Colorado if you're hurt on the job. We fight for undocumented workers and cash-pay employees who are told by employers that they "can't" file a claim.</p>
           <ul>
-            <li>Hurt on the job<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Cash-pay workers<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Lost wages<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Medical costs<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Hurt on the job</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Cash-pay workers</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Lost wages</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Medical costs</li>
           </ul>
           <a class="btn btn--quiet" href="#areas">View Workers' Compensation</a>
         </div>
@@ -607,9 +608,9 @@ details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
         <div class="area__body">
           <h3>Personal Injury</h3>
           <ul>
-            <li>Car, truck and pedestrian accidents<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>We deal with the insurance company<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Your status stays out of it<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Car, truck and pedestrian accidents</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>We deal with the insurance company</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your status stays out of it</li>
           </ul>
           <a class="btn btn--quiet" href="#areas">View Personal Injury</a>
         </div>
@@ -619,9 +620,9 @@ details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
         <div class="area__body">
           <h3>Car and Truck Accidents</h3>
           <ul>
-            <li>Motor vehicle accidents<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Commercial vehicle cases<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
-            <li>Court, if they won't settle fairly<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Motor vehicle accidents</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Commercial vehicle cases</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Court, if they won't settle fairly</li>
           </ul>
           <a class="btn btn--quiet" href="#areas">View Car and Truck Accidents</a>
         </div>
