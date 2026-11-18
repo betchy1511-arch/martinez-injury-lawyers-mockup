@@ -7,284 +7,293 @@
 <title>Miguel Martínez Injury Lawyers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-/* Layout: the logo's mountain ridge is the page's one motif. A deep-blue hero with Miguel in front of the
-   Denver City and County Building and the case-review form beside him, then alternating white / mist bands. */
+/* Layout: built from pieces of the six sites Franco likes, in the firm's own colours.
+   Ramos: full photo hero + three-word line + two-tone headings. Zaner: gold-bar tag + framed title block.
+   Metier: stats band on the hero + cards with sub-lists + big phone line. Fang: EN/ES pill, ruled stats, large review card.
+   CGH: numbered circles + quote strips + bordered FAQ rows. Rathod: three pillars + boxed panel over a photo. */
 :root{
-  --blue:#13618a;        /* brand blue, from the identity sheet */
-  --blue-deep:#0b3147;   /* hero, footer */
-  --blue-ink:#082536;    /* darkest, text on light */
-  --gold:#a17c40;        /* brand gold, decoration and text on dark */
-  --gold-btn:#876628;    /* one button colour everywhere, white label */
-  --gold-btn-hover:#75571f;
-  --gold-edge:#cba865;   /* button edge, gold text on dark */
-  --gold-text:#7a5b22;   /* gold used as small text on light */
-  --mist:#eef2f3;        /* brand grey #cccccb, lightened for bands */
-  --grey:#cccccb;        /* brand grey */
-  --line:#d5dcdf;
+  --blue:#13618a;      /* identity sheet */
+  --gold:#a17c40;      /* identity sheet */
+  --grey:#cccccb;      /* identity sheet */
+  --ink:#082536;       /* dark shade of the brand blue, for text and the photo overlay */
+  --mist:#eef0f0;      /* light tint of the brand grey */
+  --line:#d3d8da;
   --white:#ffffff;
   --body:#2c3d47;
   --muted:#51626c;
-  --on-dark:#e9eff2;
-  --on-dark-muted:#b9c8d0;
   --display:"Montserrat","Segoe UI",Arial,sans-serif;
   --text:"Source Sans 3","Segoe UI",Arial,sans-serif;
   --wrap:1200px;
-  --band:clamp(52px,6.2vw,88px);
+  --band:clamp(48px,5.4vw,76px);
   color-scheme:light;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--white);color:var(--body);font-family:var(--text);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--blue)}
 img{display:block;max-width:100%;height:auto}
 a{color:var(--blue)}
-h1,h2,h3{font-family:var(--display);color:var(--blue-ink);margin:0;text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:clamp(28px,3.1vw,40px);line-height:1.18;font-weight:700}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(28px,3.1vw,40px);line-height:1.2;font-weight:700}
 h3{font-size:21px;line-height:1.3;font-weight:700}
 p{margin:0}
+figure{margin:0}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .band{padding-block:var(--band)}
 .band--mist{background:var(--mist)}
-.band--deep{background:var(--blue-deep);color:var(--on-dark)}
-.band--deep h2,.band--deep h3{color:var(--white)}
-.eyebrow{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);margin-bottom:12px}
-.band--deep .eyebrow,.hero .eyebrow{color:var(--gold-edge)}
+.band--blue{background:var(--blue);color:var(--white)}
+.band--blue h2,.band--blue h3{color:var(--white)}
+/* the important words in every heading */
+.hl{color:var(--blue);background:linear-gradient(transparent 64%,rgba(161,124,64,.36) 64%);padding:0 .08em}
+.band--blue .hl,.on-photo .hl{color:var(--white);background:linear-gradient(transparent 64%,rgba(161,124,64,.95) 64%)}
+.eyebrow{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7a5b22;margin-bottom:12px}
+.band--blue .eyebrow{color:var(--white)}
 .lede{font-size:20px;color:var(--muted);max-width:62ch;margin-top:14px}
-.band--deep .lede{color:var(--on-dark-muted)}
-.head{margin-bottom:clamp(28px,3.4vw,44px)}
-:focus-visible{outline:3px solid var(--gold-edge);outline-offset:3px;border-radius:4px}
+.band--blue .lede{color:var(--white)}
+.head{margin-bottom:clamp(24px,3vw,38px)}
+.head--center{text-align:center}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
 
-/* Buttons: one filled colour for the main action, outlined for the phone, quiet box for card links */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:13px 26px;border-radius:6px;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.2;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .18s ease,transform .18s ease}
-.btn--main{background:var(--gold-btn);border-color:var(--gold-edge);color:var(--white)}
-.btn--main:hover{background:var(--gold-btn-hover);transform:translateY(-1px)}
+/* Buttons: brand gold for the main action everywhere, outlined for the phone, quiet box for card links */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:12px 26px;border-radius:6px;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.2;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .18s ease,transform .18s ease}
+.btn--main{background:var(--gold);border-color:var(--gold);color:var(--white);font-size:19px}
+.btn--main:hover{background:#8d6b33;transform:translateY(-1px)}
+.band--blue .btn--main,.on-photo .btn--main,.help .btn--main{border-color:var(--white)}
 .btn--phone{background:transparent;border-color:var(--blue);color:var(--blue)}
 .btn--phone:hover{background:rgba(19,97,138,.08)}
-.on-dark .btn--phone,.band--deep .btn--phone{border-color:var(--white);color:var(--white)}
-.on-dark .btn--phone:hover,.band--deep .btn--phone:hover{background:rgba(255,255,255,.12)}
-.btn--quiet{min-height:44px;padding:9px 16px;font-size:15px;background:var(--white);border:1.5px solid var(--line);color:var(--blue-ink)}
+.band--blue .btn--phone,.on-photo .btn--phone{border-color:var(--white);color:var(--white)}
+.band--blue .btn--phone:hover,.on-photo .btn--phone:hover{background:rgba(255,255,255,.14)}
+.btn--quiet{min-height:44px;padding:9px 16px;font-size:15px;background:var(--white);border:1.5px solid #8ea1ab;color:var(--ink)}
 .btn--quiet:hover{border-color:var(--blue);color:var(--blue)}
 .btn svg{width:18px;height:18px;flex:none}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.reducer{font-size:15.5px;color:var(--muted);margin-top:12px}
-.on-dark .reducer,.band--deep .reducer{color:var(--on-dark-muted)}
 
-/* Utility bar + header */
+/* Top bar and header */
 .util{background:var(--blue);color:var(--white);font-size:14.5px}
 .util .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px}
-.util strong{color:var(--white);font-weight:700}
-.lang{display:inline-flex;border:1px solid rgba(255,255,255,.45);border-radius:999px;overflow:hidden;font-family:var(--display);font-weight:700;font-size:12.5px}
+.lang{display:inline-flex;border:1px solid rgba(255,255,255,.6);border-radius:999px;overflow:hidden;font-family:var(--display);font-weight:700;font-size:12.5px}
 .lang a{padding:5px 13px;color:var(--white);text-decoration:none;letter-spacing:.06em}
 .lang a[aria-current="true"]{background:var(--white);color:var(--blue)}
-.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
-.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:84px}
+.site-head{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:84px}
 .logo{flex:none}
-.logo img{width:196px}
-.nav{display:flex;align-items:center;gap:19px;font-family:var(--display);font-weight:600;font-size:14.5px;white-space:nowrap}
-.nav a{color:var(--blue-ink);text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+.logo img{width:192px}
+.nav{display:flex;align-items:center;gap:16px;font-family:var(--display);font-weight:600;font-size:14.5px;white-space:nowrap}
+.nav a{color:var(--ink);text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
 .nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--gold)}
 .head-cta{display:flex;align-items:center;gap:10px;white-space:nowrap}
-.head-cta .btn{min-height:46px;padding:10px 13px;font-size:14.5px}
-.menu-btn{display:none;width:48px;height:48px;border:1.5px solid var(--line);border-radius:6px;background:var(--white);color:var(--blue-ink);align-items:center;justify-content:center;cursor:pointer}
+.head-cta .btn{min-height:46px;padding:9px 12px}
+.head-cta .btn--main{font-size:17px}
+.head-cta .btn--phone{font-size:14.5px}
+.menu-btn{display:none;width:48px;height:48px;border:1.5px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink);align-items:center;justify-content:center;cursor:pointer}
 .menu-btn svg{width:24px;height:24px}
 .mobile-nav{border-top:1px solid var(--line);background:var(--white)}
 .mobile-nav .wrap{display:grid;gap:2px;padding-block:10px 18px}
-.mobile-nav a{font-family:var(--display);font-weight:600;font-size:17px;color:var(--blue-ink);text-decoration:none;padding:13px 4px;border-bottom:1px solid var(--mist)}
-.mobile-nav .btn{margin-top:12px;border-bottom:2px solid var(--gold-edge);color:var(--white)}
+.mobile-nav a{font-family:var(--display);font-weight:600;font-size:17px;color:var(--ink);text-decoration:none;padding:13px 4px;border-bottom:1px solid var(--mist)}
+.mobile-nav .btn{margin-top:12px;border-bottom:2px solid var(--gold);color:var(--white)}
 
-/* Hero: light band, Miguel inside the logo's own double ring, intake that starts with one tap */
-.hero{position:relative;background:var(--mist);overflow:hidden}
-.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,60px);align-items:center;padding-block:clamp(30px,3.6vw,50px) clamp(76px,8vw,116px)}
-.hero h1{font-size:clamp(33px,4vw,52px);line-height:1.07;font-weight:800;color:var(--blue-ink)}
-.hero h1 em{font-style:normal;color:var(--blue)}
-.hero .eyebrow{color:var(--gold-text)}
-.hero__sub{font-size:20px;color:var(--body);margin-top:16px;max-width:56ch}
-.proof{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
-.proof li{display:flex;gap:9px;align-items:flex-start;font-weight:700;color:var(--blue-ink)}
-.proof svg{width:21px;height:21px;flex:none;margin-top:3px;color:var(--gold-text)}
-.starter{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px 18px;margin-top:24px;box-shadow:0 16px 36px rgba(8,37,54,.12)}
-.starter h2{font-size:21px}
-.starter .small{font-size:15.5px;color:var(--muted);margin-top:3px}
-.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
-.choice{display:flex;align-items:center;gap:10px;min-height:62px;padding:10px 14px;border:1.5px solid #8ea1ab;border-radius:10px;background:var(--white);font-family:var(--display);font-weight:700;font-size:15.5px;line-height:1.25;color:var(--blue-ink);text-align:left;cursor:pointer;transition:background-color .18s ease,border-color .18s ease}
+/* Hero: one full photo of Miguel with the text on the dark side (Ramos), gold-bar tag (Zaner) */
+.hero{position:relative;background:var(--ink);color:var(--white);overflow:hidden}
+.hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 9%}
+.hero__shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,37,54,.96) 0%,rgba(8,37,54,.9) 36%,rgba(8,37,54,.5) 54%,rgba(8,37,54,0) 72%),linear-gradient(180deg,rgba(8,37,54,0) 62%,rgba(8,37,54,.82) 100%)}
+.hero > .wrap{position:relative;padding-block:clamp(36px,4.6vw,66px) clamp(36px,4.2vw,58px)}
+.hero__copy{max-width:720px}
+.tag{display:inline-block;border-left:5px solid var(--gold);padding:2px 0 2px 14px;font-family:var(--display);line-height:1.15;margin-bottom:18px}
+.tag b{display:block;font-size:26px;font-weight:800;color:var(--white)}
+.tag span{display:block;font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
+.trio{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.9vw,37px);line-height:1.15;color:var(--white);margin-bottom:14px}
+.trio i{font-style:normal;color:var(--gold);padding:0 .1em}
+.hero h1{color:var(--white);font-size:clamp(23px,2.3vw,30px);line-height:1.3;font-weight:700;max-width:22em}
+.hero__sub{font-size:19.5px;color:var(--white);margin-top:14px;max-width:54ch}
+.hero .cta-row{margin-top:24px}
+.hero__bar{position:relative;background:rgba(8,37,54,.9);border-top:1px solid rgba(255,255,255,.22)}
+.hero__bar ul{list-style:none;margin:0;padding:14px 0;display:flex;flex-wrap:wrap;gap:8px 34px;font-family:var(--display);font-weight:600;font-size:15.5px;color:var(--white)}
+.hero__bar li{display:flex;gap:9px;align-items:center}
+.hero__bar svg{width:19px;height:19px;flex:none;color:var(--gold)}
+
+/* Stats band on the hero (Metier), numbers with a short rule (Fang) */
+.stats{background:var(--blue);color:var(--white);position:relative;padding-block:28px 64px}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.05;font-variant-numeric:tabular-nums}
+.stat b::after{content:"";display:block;width:44px;height:4px;background:var(--gold);margin:10px 0 8px}
+.stat span{display:block;font-size:16.5px}
+.stats small{position:absolute;left:0;right:0;bottom:34px;text-align:center;font-size:13.5px;color:var(--white)}
+.ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:28px;display:block}
+
+/* Intake: tell us what happened, one tap to start */
+.intake .wrap{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(22px,3.6vw,52px);align-items:center}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.choice{display:flex;align-items:center;gap:10px;min-height:64px;padding:10px 14px;border:1.5px solid #8ea1ab;border-radius:8px;background:var(--white);font-family:var(--display);font-weight:700;font-size:15.5px;line-height:1.25;color:var(--ink);text-align:left;cursor:pointer;transition:background-color .18s ease,border-color .18s ease}
 .choice svg{width:24px;height:24px;flex:none;color:var(--blue)}
-.choice:hover{border-color:var(--blue);background:#f4f8fa}
+.choice:hover{border-color:var(--blue)}
 .choice[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--white)}
 .choice[aria-pressed="true"] svg{color:var(--white)}
-.step2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;align-items:end;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-label{display:block;font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--blue-ink);margin-bottom:5px}
-input,select,textarea{width:100%;font:inherit;font-size:16.5px;color:var(--blue-ink);background:var(--white);border:1.5px solid #8ea1ab;border-radius:6px;padding:11px 12px;min-height:52px}
-input:focus,select:focus,textarea:focus{outline:3px solid rgba(19,97,138,.3);border-color:var(--blue)}
+.step2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;align-items:end;margin-top:14px}
+label{display:block;font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:5px}
+input{width:100%;font:inherit;font-size:16.5px;color:var(--ink);background:var(--white);border:1.5px solid #8ea1ab;border-radius:6px;padding:11px 12px;min-height:54px}
+input:focus{outline:3px solid rgba(19,97,138,.3);border-color:var(--blue)}
 .fine{font-size:12.5px;line-height:1.45;color:var(--muted);margin-top:12px}
-.form-note{font-size:14.5px;font-weight:600;color:var(--blue);background:var(--mist);border-radius:6px;padding:10px 12px;margin-top:12px}
-.hero__call{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px;font-weight:600;color:var(--blue-ink)}
-.portrait{position:relative;justify-self:center;width:min(100%,470px);aspect-ratio:1;margin:0}
-.portrait__ring{position:absolute;inset:0;border-radius:50%;border:13px solid var(--blue)}
-.portrait__arc{position:absolute;inset:23px;border-radius:50%;border:5px solid var(--gold);border-bottom-color:transparent;transform:rotate(-12deg)}
-.portrait img{position:absolute;inset:38px;width:calc(100% - 76px);height:calc(100% - 76px);border-radius:50%;object-fit:cover;object-position:50% 4%}
-.chip{position:absolute;display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:9px 13px;font-family:var(--display);font-weight:700;font-size:13.5px;line-height:1.25;color:var(--blue-ink);box-shadow:0 10px 22px rgba(8,37,54,.16)}
-.chip svg{width:17px;height:17px;flex:none;color:var(--gold-text)}
-.chip--1{left:-5%;top:11%}
-.chip--2{right:-6%;bottom:10%}
-.chip--3{left:-2%;bottom:24%}
-.ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(34px,4.6vw,62px);display:block}
+.form-note{font-size:14.5px;font-weight:600;color:var(--blue);background:var(--white);border-radius:6px;padding:10px 12px;margin-top:12px}
 
-/* Results strip */
-.stats{background:var(--white);padding-block:6px 0}
-.stats .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
-.stat{padding:22px 22px 24px;border-left:1px solid var(--line)}
-.stat:first-child{border-left:0;padding-left:0}
-.stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(28px,3vw,40px);line-height:1.1;color:var(--blue);font-variant-numeric:tabular-nums}
-.stat span{display:block;font-size:16px;color:var(--muted);margin-top:4px}
-.stats small{display:block;font-size:13.5px;color:var(--muted);padding-bottom:26px}
-
-/* Practice areas */
-.areas{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px}
-.area{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;flex-direction:column;gap:12px}
-.area p{color:var(--muted)}
-.area .btn{align-self:flex-start;margin-top:auto}
-.area--lead{background:var(--blue);border-color:var(--blue);color:var(--on-dark);padding:34px;position:relative;overflow:hidden}
-.area--lead h3{color:var(--white);font-size:clamp(24px,2.4vw,30px)}
-.area--lead p{color:var(--on-dark)}
-.area--lead .tag{align-self:flex-start;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--blue-deep);color:var(--gold-edge);padding:6px 11px;border-radius:4px}
-.area--lead ul{margin:4px 0 8px;padding:0;list-style:none;display:grid;gap:9px}
-.area--lead li{display:flex;gap:10px;font-weight:600;color:var(--white)}
-.area--lead li svg{width:20px;height:20px;flex:none;margin-top:4px;color:var(--gold-edge)}
-.area--lead .peak{position:absolute;right:-30px;bottom:-22px;width:300px;opacity:.16;pointer-events:none}
-.area-stack{display:grid;gap:22px}
-
-/* Two problems, written as the conversation it is */
-.talk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 34px}
+/* Framed title beside the opening copy (Zaner), then the conversation */
+.framed{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(26px,4.4vw,64px);align-items:center}
+.frame{text-align:center;padding:36px 18px;position:relative}
+.frame::before,.frame::after{content:"";position:absolute;left:12%;right:12%;height:26px;border:2px solid var(--gold)}
+.frame::before{top:0;border-bottom:0}
+.frame::after{bottom:0;border-top:0}
+.frame h2{font-size:clamp(30px,3.5vw,46px);line-height:1.15}
+.frame p{font-size:19px;font-style:italic;color:var(--ink);margin-top:14px}
+.framed__copy p+p{margin-top:14px}
+.framed__copy p:first-child{font-size:21px;font-weight:600;color:var(--ink)}
+.talk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 34px;margin-top:clamp(28px,3.6vw,44px)}
 .pair{display:grid;gap:10px;align-content:start}
-.pair blockquote{margin:0;justify-self:start;max-width:90%;background:var(--mist);border-radius:18px 18px 18px 4px;padding:15px 19px;font-family:var(--display);font-weight:600;font-size:18px;line-height:1.35;color:var(--blue-ink)}
+.pair blockquote{margin:0;justify-self:start;max-width:90%;background:var(--mist);border-radius:18px 18px 18px 4px;padding:15px 19px;font-family:var(--display);font-weight:600;font-size:18px;line-height:1.35;color:var(--ink)}
 .pair p{justify-self:end;max-width:90%;background:var(--blue);color:var(--white);border-radius:18px 18px 4px 18px;padding:15px 19px}
-.pair p b{color:var(--white);font-weight:700}
 
-/* Miguel */
-.miguel{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,4.4vw,64px);align-items:center}
-.miguel__photo{border-radius:10px;overflow:hidden;position:relative}
-.miguel__photo img{width:100%;aspect-ratio:4/4.6;object-fit:cover;object-position:50% 30%}
-.miguel__photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;font-size:14px;color:var(--white);background:linear-gradient(180deg,rgba(8,37,54,0),rgba(8,37,54,.88))}
-figure{margin:0}
-.miguel p{margin-top:14px;max-width:60ch}
-.path-ridge{display:block;width:100%;height:64px;margin-top:22px}
-.path{list-style:none;margin:6px 0 28px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
-.path li{padding:0 8px;text-align:center}
-.path b{display:block;font-family:var(--display);font-weight:800;font-size:22px;color:var(--blue);font-variant-numeric:tabular-nums}
-.path span{display:block;font-size:15.5px;line-height:1.4;color:var(--muted);margin-top:3px}
+/* Practice areas: cards with sub-lists (Metier) and plus rows (Ramos) */
+.areas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.area{background:var(--white);border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:6px;padding:26px 26px 24px;display:flex;flex-direction:column}
+.area__ic{width:46px;height:46px;color:var(--blue);margin-bottom:12px}
+.area ul{list-style:none;margin:14px 0 20px;padding:0;border-top:1px solid var(--line)}
+.area li{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-weight:600;color:var(--ink)}
+.area li svg{width:16px;height:16px;flex:none;color:var(--gold)}
+.area .btn{align-self:flex-start;margin-top:auto}
+.area--lead{background:var(--blue);border-color:var(--blue);border-top-color:var(--gold)}
+.area--lead h3,.area--lead li{color:var(--white)}
+.area--lead .area__ic{color:var(--white)}
+.area--lead ul,.area--lead li{border-color:rgba(255,255,255,.3)}
+.area--lead li svg{color:var(--white)}
+.area--lead .flag{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:8px}
 
-/* Steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;counter-reset:s}
-.step{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:26px}
-.step::before{counter-increment:s;content:"Step " counter(s);display:block;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-text);margin-bottom:10px}
-.step p{color:var(--muted);margin-top:8px}
+/* Miguel: photo + three pillars (Rathod) */
+.miguel{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4.4vw,64px);align-items:center}
+.miguel__photo{border-radius:6px;overflow:hidden;position:relative}
+.miguel__photo img{width:100%;aspect-ratio:4/4.5;object-fit:cover;object-position:50% 30%}
+.miguel__photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;font-size:14px;color:var(--white);background:linear-gradient(180deg,rgba(8,37,54,0),rgba(8,37,54,.9))}
+.pillars{list-style:none;margin:22px 0 26px;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.pillars li{display:grid;grid-template-columns:160px minmax(0,1fr);gap:20px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line)}
+.pillars b{font-family:var(--display);font-weight:800;font-size:22px;color:var(--blue)}
+
+/* Steps: numbered circles on one line (CGH), no boxes */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;position:relative}
+.steps::before{content:"";position:absolute;left:29px;right:20%;top:29px;height:2px;background:var(--gold)}
+.steps li{position:relative}
+.steps .n{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--ink);color:var(--white);font-family:var(--display);font-weight:800;font-size:19px;border:3px solid var(--gold);margin-bottom:16px;position:relative}
+.steps p{color:var(--muted);margin-top:8px;max-width:36ch}
 
 /* Message us */
 .msg{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4.4vw,64px);align-items:center}
 .channels{list-style:none;margin:22px 0 26px;padding:0;display:grid;gap:14px}
 .channels li{display:flex;gap:14px;align-items:flex-start}
-.channels .ic{width:42px;height:42px;flex:none;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center;color:var(--gold-edge)}
+.channels .ic{width:42px;height:42px;flex:none;border-radius:8px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:var(--white)}
 .channels svg{width:22px;height:22px}
-.channels b{display:block;font-family:var(--display);color:var(--white);font-size:17px}
-.channels span{color:var(--on-dark-muted);font-size:16.5px}
+.channels b{display:block;font-family:var(--display);font-size:17px}
+.channels span{font-size:16.5px}
 .phone-chat{background:var(--white);border-radius:14px;padding:18px;display:grid;gap:10px;box-shadow:0 22px 48px rgba(3,20,31,.42);max-width:440px;justify-self:end;width:100%}
-.phone-chat .who{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;color:var(--blue-ink);font-size:15px}
+.phone-chat .who{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;color:var(--ink);font-size:15px}
 .phone-chat .who img{width:36px;height:36px;border-radius:50%}
 .phone-chat .who small{display:block;font-family:var(--text);font-weight:400;color:var(--muted);font-size:13.5px}
 .bub{max-width:86%;padding:10px 14px;border-radius:14px;font-size:16px;line-height:1.45}
-.bub--in{background:var(--mist);color:var(--blue-ink);border-bottom-left-radius:4px}
+.bub--in{background:var(--mist);color:var(--ink);border-bottom-left-radius:4px}
 .bub--out{background:var(--blue);color:var(--white);justify-self:end;border-bottom-right-radius:4px}
-.phone-chat .tag{font-size:12.5px;color:var(--muted);text-align:center}
+.phone-chat .note{font-size:12.5px;color:var(--muted);text-align:center}
 
-/* Reviews */
-.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.review{border:1px solid var(--line);border-radius:10px;padding:24px;background:var(--white);display:flex;flex-direction:column;gap:14px}
-.review p{font-size:18.5px;color:var(--blue-ink)}
-.review footer{margin-top:auto;font-size:15px;color:var(--muted)}
-.review footer b{display:block;font-family:var(--display);color:var(--blue-ink)}
-.stars{display:flex;gap:3px;color:var(--gold)}
-.stars svg{width:18px;height:18px}
+/* Reviews: one large card (Fang) beside quote strips (CGH) */
+.reviews{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(22px,3.4vw,44px);align-items:stretch}
+.review-big{background:var(--ink);color:var(--white);border-radius:6px;padding:clamp(26px,3.4vw,44px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.review-big .q{font-family:var(--display);font-weight:800;font-size:90px;line-height:.6;color:var(--gold);height:44px}
+.review-big p{font-family:var(--display);font-weight:600;font-size:clamp(21px,2.2vw,27px);line-height:1.35}
+.review-big footer{margin-top:20px;font-size:16px}
+.review-big footer b{display:block;font-family:var(--display);font-size:17px}
+.review-big .peak{position:absolute;right:-20px;bottom:-16px;width:280px;opacity:.2;pointer-events:none}
+.strips{display:grid;gap:18px;align-content:center}
+.strip{border-left:5px solid var(--gold);background:var(--mist);padding:18px 22px}
+.strip p{font-size:19px;font-style:italic;color:var(--ink)}
+.strip footer{margin-top:8px;font-size:15px;color:var(--muted)}
+.strip footer b{font-family:var(--display);color:var(--ink);font-style:normal}
 
-/* FAQ */
-.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4.4vw,64px);align-items:start}
-details{border-bottom:1px solid var(--line)}
-details:first-of-type{border-top:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:19px 2px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--blue-ink)}
+/* FAQ: bordered rows (CGH) with a help card that fills the side */
+.faq{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(24px,3.6vw,48px);align-items:stretch}
+details{background:var(--white);border:1px solid var(--line);border-radius:6px}
+details+details{margin-top:10px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:17px 20px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink)}
 summary::-webkit-details-marker{display:none}
 summary svg{width:22px;height:22px;flex:none;color:var(--blue);transition:transform .2s ease}
-details[open] summary svg{transform:rotate(180deg)}
-details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
+details[open] summary svg{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--body);max-width:70ch}
+.help{background:var(--blue);color:var(--white);border-radius:6px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.help h3{color:var(--white)}
+.help dl{margin:0;display:grid;gap:12px}
+.help dt{font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+.help dd{margin:2px 0 0;font-size:18px}
+.help dd a{color:var(--white)}
+.help .btn{width:100%;margin-top:auto}
 
-/* Final + office */
-.final{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4.4vw,64px);align-items:center}
-.office{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:26px 28px;display:grid;gap:16px}
-.office dl{margin:0;display:grid;gap:14px}
-.office dt{font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-edge)}
-.office dd{margin:2px 0 0;color:var(--white);font-size:18px}
-.office dd a{color:var(--white)}
+/* Final: boxed panel over a photo (Rathod), big phone line (Metier) */
+.final{position:relative;background:var(--ink);overflow:hidden;padding-block:clamp(52px,6.4vw,92px)}
+.final__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 34%}
+.final__shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,37,54,.82) 0%,rgba(8,37,54,.55) 50%,rgba(8,37,54,.12) 72%,rgba(8,37,54,.3) 100%)}
+.panel{position:relative;max-width:600px;background:var(--white);border-top:6px solid var(--gold);border-radius:6px;padding:clamp(26px,3.4vw,40px);box-shadow:0 26px 60px rgba(3,20,31,.5)}
+.panel .big-phone{display:block;font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,44px);color:var(--blue);text-decoration:none;margin:16px 0 4px}
+.panel .cta-row{margin-top:16px}
+.panel small{display:block;margin-top:14px;font-size:15.5px;color:var(--muted)}
 
 /* Footer */
-.foot{background:var(--blue-ink);color:var(--on-dark-muted);font-size:15.5px}
+.foot{background:var(--blue);color:var(--white);font-size:15.5px}
 .foot .wrap{padding-block:40px 44px;display:grid;gap:24px}
-.foot__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+.foot__top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr) minmax(0,.9fr);gap:28px 48px;align-items:start}
 .foot__top img{width:210px}
-.foot nav{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--display);font-weight:600}
-.foot a{color:var(--on-dark);text-decoration:none}
+.foot__brand{display:grid;gap:14px;justify-items:start;max-width:420px}
+.foot__brand p{font-size:17px}
+.foot__brand .btn--main{border-color:var(--white)}
+.foot h3{color:var(--white);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.foot a{color:var(--white);text-decoration:none}
 .foot a:hover{text-decoration:underline}
 .foot p{max-width:92ch;font-size:14px;line-height:1.55}
+.foot__legal{border-top:1px solid rgba(255,255,255,.3);padding-top:20px;display:grid;gap:10px}
 
 /* Floating actions */
-.float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 12px 28px rgba(3,20,31,.34)}
-.sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--white);border-top:1px solid var(--line);padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));gap:10px;grid-template-columns:auto 1fr}
-.sticky .btn{min-height:50px;padding:10px 14px;font-size:15.5px}
+.float{position:fixed;right:18px;bottom:22px;z-index:40;box-shadow:0 12px 28px rgba(3,20,31,.34);border-color:var(--white)}
+.sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--white);border-top:1px solid var(--line);padding:10px 14px;gap:10px;grid-template-columns:auto 1fr}
+.sticky .btn{min-height:52px;padding:10px 14px}
 
-@media (max-width:1180px){
-  .chip--2{right:-1%}
+@media (max-width:1240px){
   .nav{display:none}
   .menu-btn{display:inline-flex}
-  .head-cta .btn--phone{display:none}
 }
-@media (min-width:1181px){.mobile-nav{display:none!important}}
+@media (min-width:1241px){.mobile-nav{display:none!important}}
 @media (max-width:960px){
-  .areas,.miguel,.msg,.faq,.final{grid-template-columns:minmax(0,1fr)}
-  .hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:26px clamp(70px,9vw,96px)}
-  .portrait{order:-1;width:min(74%,330px)}
-  .portrait__ring{border-width:10px}
-  .portrait__arc{inset:18px;border-width:4px}
-  .portrait img{inset:30px;width:calc(100% - 60px);height:calc(100% - 60px)}
-  .chip--1{left:-16%}
-  .chip--2{right:-18%}
-  .chip--3{left:-14%}
+  .intake .wrap,.framed,.miguel,.msg,.reviews,.faq{grid-template-columns:minmax(0,1fr)}
+  .areas{grid-template-columns:minmax(0,1fr)}
+  .hero__photo{position:relative;inset:auto;height:clamp(230px,44vw,360px);object-position:74% 8%}
+  .hero__shade{display:none}
+  .hero > .wrap{padding-block:26px 34px}
+  .stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:26px}
+  .steps{grid-template-columns:minmax(0,1fr);gap:26px}
+  .steps::before{display:none}
+  .steps li{display:grid;grid-template-columns:58px minmax(0,1fr);gap:0 18px}
+  .steps .n{grid-row:1/3;margin:0}
   .phone-chat{justify-self:start}
-  .stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .stat{border-left:0;padding-left:0;border-top:1px solid var(--line)}
-  .stat:nth-child(-n+2){border-top:0}
-  .steps,.reviews{grid-template-columns:minmax(0,1fr)}
   .miguel__photo img{aspect-ratio:4/3.4}
+  .foot__top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .foot__brand{grid-column:1/-1}
 }
 @media (max-width:700px){
   body{font-size:17px}
   .util .tagline{display:none}
-  .util .wrap{justify-content:space-between}
   .site-head .wrap{min-height:70px}
-  .logo img{width:176px}
-  .head-cta .btn--main{display:none}
+  .logo img{width:172px}
+  .head-cta .btn{display:none}
   .talk,.choices,.step2{grid-template-columns:minmax(0,1fr)}
-  .chip{font-size:12.5px;padding:7px 10px}
-  .chip--1{left:-12%;top:6%}
-  .chip--2{right:-14%}
-  .chip--3{left:-12%}
-  .path-ridge{display:none}
-  .path{border-top:3px solid var(--gold);padding-top:12px;row-gap:14px}
-  .path li{text-align:left;padding:0 8px 0 0}
-  .foot .wrap{padding-block:36px 104px}
-  .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pillars li{grid-template-columns:minmax(0,1fr);gap:4px}
   .float{display:none}
   .sticky{display:grid}
-  .starter{padding:18px 16px 16px}
-  .area,.area--lead{padding:24px 20px}
   .cta-row .btn{width:100%}
+  .final__shade{background:rgba(8,37,54,.6)}
+  .foot .wrap{padding-block:36px 108px}
+  .stats small{position:static;display:block;text-align:left;margin-top:18px;padding-inline:20px}
+  .stats{padding-bottom:52px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
@@ -294,13 +303,13 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5l5 5L19.5 7"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.58 3.57a1 1 0 01-.25 1.02L6.6 10.8z"/></symbol>
-  <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></symbol>
   <symbol id="i-text" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 18h3"/></symbol>
-  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 00-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1012 3.5z"/><path fill="currentColor" d="M9.3 8.2c.3 0 .5.1.6.5l.5 1.2c.1.3 0 .5-.2.7l-.4.5c.6 1 1.4 1.8 2.5 2.4l.6-.6c.2-.2.4-.2.7-.1l1.2.6c.3.1.4.3.4.6 0 1-.9 1.6-1.8 1.5-2.9-.4-5.3-2.8-5.7-5.7-.1-.9.6-1.6 1.6-1.6z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 00-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1012 3.5z"/></symbol>
   <symbol id="i-work" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M3 17h18M5 17a7 7 0 0114 0M10 6h4v5h-4zM12 3v3"/></symbol>
   <symbol id="i-car" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M4 16v-3l2-5h12l2 5v3M3 16h18M7 19v-3M17 19v-3M7 13h.01M17 13h.01"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M8 21l1.5-7-2.5-2 2-3.5h6l2 3.5-2.5 2 1.5 7"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
 </svg>
 
@@ -316,8 +325,8 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
     <a class="logo" href="#top" aria-label="Miguel Martínez Injury Lawyers, home"><img src="img/logo.png" width="720" height="228" alt="Miguel Martínez Injury Lawyers"></a>
     <nav class="nav" aria-label="Main">
       <a href="#top" aria-current="page">Home</a>
-      <a href="#workers-comp">Workers' Comp</a>
-      <a href="#injury">Personal Injury</a>
+      <a href="#areas">Workers' Comp</a>
+      <a href="#areas">Personal Injury</a>
       <a href="#miguel">About Miguel</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
@@ -331,8 +340,8 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
   <div class="mobile-nav" id="mobileNav" hidden>
     <div class="wrap">
       <a href="#top">Home</a>
-      <a href="#workers-comp">Workers' Compensation</a>
-      <a href="#injury">Personal Injury</a>
+      <a href="#areas">Workers' Compensation</a>
+      <a href="#areas">Personal Injury</a>
       <a href="#miguel">About Miguel</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
@@ -343,108 +352,82 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
 </header>
 
 <main>
-<section class="hero">
+<section class="hero on-photo">
+  <img class="hero__photo" src="img/miguel-office.jpg" width="1100" height="1294" alt="Attorney Miguel Martínez in his Denver office beside a Department of Justice seal">
+  <div class="hero__shade"></div>
   <div class="wrap">
-    <div>
-      <p class="eyebrow">Colorado Workers' Compensation and Injury Lawyers</p>
-      <h1>Hurt at Work or on the Road? We Protect <em>Your Case and Your Status</em></h1>
-      <p class="hero__sub">Miguel Martínez has fought for Colorado families since 1989. Your immigration status is not admissible in your injury case, and we fight hard to keep it that way.</p>
-      <ul class="proof">
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Former State and Federal Prosecutor</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>You pay $0 upfront. We only get paid when you win</li>
-      </ul>
-
-      <form class="starter" id="review" novalidate>
-        <h2>What Happened?</h2>
-        <p class="small">Tap one to start your free case review. It takes under 2 minutes, and your information stays completely confidential.</p>
-        <div class="choices" role="group" aria-label="What happened?">
-          <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
-          <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
-          <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
-        </div>
-        <div class="step2" id="step2" hidden>
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="First and last name"></div>
-          <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(303) 000-0000"></div>
-          <button class="btn btn--main" type="submit">Get My Free Case Review</button>
-        </div>
-        <p class="form-note" id="formNote" hidden>This is a design preview, so the form is not connected yet.</p>
-        <p class="fine">No obligation. By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message &amp; data rates may apply. You can reply STOP to opt-out of further messaging.</p>
-      </form>
-      <p class="hero__call">Prefer to talk? <a class="btn btn--phone" href="tel:+13039643200"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (303) 964-3200</a></p>
+    <div class="hero__copy">
+      <p class="tag"><b>35+ Years</b><span>Fighting for Colorado Families</span></p>
+      <p class="trio">Prosecutor <i>+</i> Veteran <i>+</i> Advocate</p>
+      <h1>Colorado Workers' Compensation and Injury Lawyers Who Protect <span class="hl">Your Case and Your Status</span></h1>
+      <p class="hero__sub">Your immigration status is not admissible in your injury case, and we fight hard to keep it that way.</p>
+      <div class="cta-row">
+        <a class="btn btn--main" href="#review">Free Case Review</a>
+        <a class="btn btn--phone" href="tel:+13039643200"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (303) 964-3200</a>
+      </div>
     </div>
-
-    <figure class="portrait">
-      <span class="portrait__ring"></span>
-      <span class="portrait__arc"></span>
-      <img src="img/miguel-office.jpg" width="1100" height="1294" alt="Attorney Miguel Martínez in his Denver office beside a Department of Justice seal">
-      <span class="chip chip--1"><svg aria-hidden="true"><use href="#i-check"/></svg>In Colorado Since 1989</span>
-      <span class="chip chip--2"><svg aria-hidden="true"><use href="#i-check"/></svg>U.S. Army Field Medic, Vietnam</span>
-      <span class="chip chip--3"><svg aria-hidden="true"><use href="#i-check"/></svg>Se Habla Español</span>
-    </figure>
   </div>
-  <svg class="ridge" viewBox="0 0 1440 62" preserveAspectRatio="none" aria-hidden="true">
-    <path fill="#ffffff" d="M0 62V40l150-30 96 34 104-42 122 46 118-30 132 28 96-38 126 40 116-26 140 30 108-36 132 24V62z"/>
-    <path fill="none" stroke="#a17c40" stroke-width="3" vector-effect="non-scaling-stroke" d="M0 40l150-30 96 34 104-42 122 46 118-30 132 28 96-38 126 40 116-26 140 30 108-36 132 24"/>
-  </svg>
+  <div class="hero__bar">
+    <div class="wrap">
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Former State and Federal Prosecutor</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>You pay $0 upfront</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Se Habla Español</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Con Miguel Martínez Si Ganas!</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section class="stats" aria-label="Firm history">
   <div class="wrap">
     <div class="stat"><b>$200M+</b><span>Recovered for injured clients</span></div>
     <div class="stat"><b>5,000+</b><span>Cases handled</span></div>
-    <div class="stat"><b>35+ Years</b><span>Serving Colorado since 1989</span></div>
-    <div class="stat"><b>$0</b><span>Upfront. No fee unless you win</span></div>
+    <div class="stat"><b>Since 1989</b><span>Serving Colorado families</span></div>
+    <div class="stat"><b>$0</b><span>Upfront. We only get paid when you win</span></div>
   </div>
-  <div class="wrap"><small>Past results do not guarantee future outcomes.</small></div>
+  <small>Past results do not guarantee future outcomes.</small>
+  <svg class="ridge" viewBox="0 0 1440 28" preserveAspectRatio="none" aria-hidden="true"><path fill="#eef0f0" d="M0 28V17l150-11 96 13 104-17 122 19 118-11 132 11 96-15 126 17 116-11 140 13 108-15 132 9V28z"/></svg>
 </section>
 
-<section class="band band--mist" id="workers-comp">
+<section class="band band--mist intake">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">How We Help</p>
-      <h2>The Legal Protection Colorado Families Actually Need</h2>
+    <div>
+      <p class="eyebrow">Free Case Review</p>
+      <h2>Tell Us <span class="hl">What Happened</span></h2>
+      <p class="lede">Tap one to start. It takes under 2 minutes, and your information stays completely confidential.</p>
     </div>
-    <div class="areas">
-      <article class="area area--lead">
-        <span class="tag">Our Main Focus</span>
-        <h3>Workers' Compensation</h3>
-        <p>Whether you work on the books or off, you have legal rights in Colorado if you're hurt on the job. We fight for undocumented workers and cash-pay employees who are told by employers that they "can't" file a claim.</p>
-        <ul>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Lost wages and medical costs</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Compensation for your injuries</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Regardless of your documentation status</li>
-        </ul>
-        <div class="cta-row">
-          <a class="btn btn--main" href="#review">Free Case Review</a>
-          <a class="btn btn--quiet" href="#workers-comp">View Workers' Compensation</a>
-        </div>
-        <svg class="peak" viewBox="0 0 300 200" aria-hidden="true"><path fill="none" stroke="#ffffff" stroke-width="8" stroke-linejoin="miter" d="M4 190L70 30l42 96 34-76 44 110 40-82 62 122"/></svg>
-      </article>
-      <div class="area-stack" id="injury">
-        <article class="area">
-          <h3>Personal Injury</h3>
-          <p>Hurt by someone else's negligence on Colorado roads? Insurance companies move fast to minimize what they pay you. We know the tactics they use, and your status stays out of it.</p>
-          <a class="btn btn--quiet" href="#injury">View Personal Injury</a>
-        </article>
-        <article class="area">
-          <h3>Car and Truck Accidents</h3>
-          <p>Commercial vehicle cases are more complex, and liability rarely falls on just one party. We negotiate hard with every responsible party. If they won't settle fairly, we take it to court.</p>
-          <a class="btn btn--quiet" href="#injury">View Car and Truck Accidents</a>
-        </article>
+    <form id="review" novalidate>
+      <div class="choices" role="group" aria-label="What happened?">
+        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
+        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
+        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
       </div>
-    </div>
+      <div class="step2">
+        <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="First and last name"></div>
+        <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(303) 000-0000"></div>
+        <button class="btn btn--main" type="submit">Get My Free Case Review</button>
+      </div>
+      <p class="form-note" id="formNote" hidden>This is a design preview, so the form is not connected yet.</p>
+      <p class="fine">No obligation. By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message &amp; data rates may apply. You can reply STOP to opt-out of further messaging.</p>
+    </form>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">What We Hear Every Week</p>
-      <h2>Most Injured People Face Two Problems, Not One</h2>
-      <p class="lede">The injury, and the fear of what happens if you speak up. Most law firms only help with one of them.</p>
+    <div class="framed">
+      <div class="frame">
+        <h2>Two Problems, <span class="hl">One Firm</span></h2>
+        <p>Justice is not freely given and one must fight to obtain it.</p>
+      </div>
+      <div class="framed__copy">
+        <p>Most injured people in Colorado don't just face one problem. They face two.</p>
+        <p>There is the injury, and there is the fear of what happens if you speak up. Most law firms only help with one of them. We've been protecting clients' status in personal injury cases for over 35 years.</p>
+      </div>
     </div>
     <div class="talk">
-      <div class="pair"><blockquote>"I'm afraid that if I file a lawsuit, immigration will get involved."</blockquote><p><b>Your status stays out of it.</b> We've been protecting clients' status in personal injury cases for over 35 years.</p></div>
+      <div class="pair"><blockquote>"I'm afraid that if I file a lawsuit, immigration will get involved."</blockquote><p><b>Your status stays out of it.</b> Your immigration status is not admissible in your injury case, and we fight hard to keep it that way.</p></div>
       <div class="pair"><blockquote>"I can't afford a lawyer. I'm already drowning in medical bills."</blockquote><p><b>You pay $0 upfront.</b> We only get paid when you win. If we don't recover money for you, you owe us nothing.</p></div>
       <div class="pair"><blockquote>"The insurance company keeps calling and I don't know what to say."</blockquote><p><b>You don't talk to them. We do.</b> We take over all communication the moment you hire us.</p></div>
       <div class="pair"><blockquote>"My last attorney never called me back."</blockquote><p><b>You work directly with our team.</b> Every update, every decision, we walk you through it.</p></div>
@@ -452,7 +435,49 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
   </div>
 </section>
 
-<section class="band band--mist" id="miguel">
+<section class="band band--mist" id="areas">
+  <div class="wrap">
+    <div class="head head--center">
+      <p class="eyebrow">How We Help</p>
+      <h2>The <span class="hl">Legal Protection Colorado Families</span> Actually Need</h2>
+    </div>
+    <div class="areas">
+      <article class="area area--lead">
+        <svg class="area__ic" aria-hidden="true"><use href="#i-work"/></svg>
+        <p class="flag">Our Main Focus</p>
+        <h3>Workers' Compensation</h3>
+        <ul>
+          <li>Hurt on the job, on the books or off<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>Undocumented and cash-pay workers<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>Lost wages and medical costs<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+        </ul>
+        <a class="btn btn--quiet" href="#areas">View Workers' Compensation</a>
+      </article>
+      <article class="area">
+        <svg class="area__ic" aria-hidden="true"><use href="#i-person"/></svg>
+        <h3>Personal Injury</h3>
+        <ul>
+          <li>Car, truck and pedestrian accidents<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>We deal with the insurance company<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>Your status stays out of it<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+        </ul>
+        <a class="btn btn--quiet" href="#areas">View Personal Injury</a>
+      </article>
+      <article class="area">
+        <svg class="area__ic" aria-hidden="true"><use href="#i-car"/></svg>
+        <h3>Car and Truck Accidents</h3>
+        <ul>
+          <li>Motor vehicle accidents<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>Commercial vehicle cases<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+          <li>Court, if they won't settle fairly<svg aria-hidden="true"><use href="#i-plus"/></svg></li>
+        </ul>
+        <a class="btn btn--quiet" href="#areas">View Car and Truck Accidents</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="miguel">
   <div class="wrap miguel">
     <figure class="miguel__photo">
       <img src="img/miguel-capitol.jpg" width="900" height="1291" alt="Miguel Martínez standing in front of the Colorado State Capitol in Denver">
@@ -460,16 +485,13 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
     </figure>
     <div>
       <p class="eyebrow">Meet Miguel Martínez</p>
-      <h2>He Knows How the Other Side Thinks</h2>
-      <p>Before representing injured people, Miguel served as both an Assistant District Attorney and an Assistant U.S. Attorney. He knows how the other side builds a case, and he uses that knowledge for you.</p>
-      <p>He came to the United States from Mexico at 16 and served as a U.S. Army Field Medic in Vietnam. He has faced the same fears his clients face.</p>
-      <svg class="path-ridge" viewBox="0 0 800 64" preserveAspectRatio="none" aria-hidden="true"><path fill="none" stroke="#a17c40" stroke-width="3" stroke-linejoin="miter" vector-effect="non-scaling-stroke" d="M0 60L52 40 100 10 146 42 214 54 300 8 352 44 420 56 500 6 556 46 624 54 700 4 756 40 800 58"/></svg>
-      <ol class="path">
-        <li><b>1966</b><span>Immigrated from Mexico at age 16</span></li>
-        <li><b>1973</b><span>Honorably discharged, U.S. Army Field Medic, Vietnam</span></li>
-        <li><b>1981</b><span>Texas Bar, then eight years as a prosecutor</span></li>
-        <li><b>1989</b><span>Private practice in Colorado</span></li>
-      </ol>
+      <h2>He Knows How <span class="hl">the Other Side Thinks</span></h2>
+      <p class="lede">He is not just your attorney. He is your advocate, your neighbor, and someone who has faced the same fears his clients face.</p>
+      <ul class="pillars">
+        <li><b>Prosecutor</b><span>Eight years as an Assistant District Attorney and an Assistant U.S. Attorney before representing injured people.</span></li>
+        <li><b>Veteran</b><span>U.S. Army Field Medic in Vietnam, honorably discharged in 1973.</span></li>
+        <li><b>Advocate</b><span>Came to the United States from Mexico at 16. In private practice in Colorado since 1989.</span></li>
+      </ul>
       <div class="cta-row">
         <a class="btn btn--main" href="#review">Free Case Review</a>
         <a class="btn btn--quiet" href="#miguel">Read Miguel's Story</a>
@@ -478,25 +500,25 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
   </div>
 </section>
 
-<section class="band">
+<section class="band band--mist">
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">What Happens Next</p>
-      <h2>Getting Started Is Simple</h2>
+      <h2>Getting Started <span class="hl">Is Simple</span></h2>
     </div>
-    <div class="steps">
-      <div class="step"><h3>Call Us or Fill Out the Form</h3><p>It takes under 2 minutes, and your information stays completely confidential.</p></div>
-      <div class="step"><h3>We Review Your Case at No Cost</h3><p>We assess what happened, what you're owed, and how we protect your status. No pressure, no obligation.</p></div>
-      <div class="step"><h3>We Go to Work While You Focus on Healing</h3><p>You leave with a clear plan and a team that's already fighting for you.</p></div>
-    </div>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Call Us or Fill Out the Form</h3><p>It takes under 2 minutes, and your information stays completely confidential.</p></li>
+      <li><span class="n">02</span><h3>We Review Your Case at No Cost</h3><p>We assess what happened, what you're owed, and how we protect your status. No pressure, no obligation.</p></li>
+      <li><span class="n">03</span><h3>We Go to Work While You Focus on Healing</h3><p>You leave with a clear plan and a team that's already fighting for you.</p></li>
+    </ol>
   </div>
 </section>
 
-<section class="band band--deep">
+<section class="band band--blue">
   <div class="wrap msg">
     <div>
       <p class="eyebrow">English or Spanish</p>
-      <h2>Message Us Any Time and Get a Reply Right Away</h2>
+      <h2>Message Us Any Time and <span class="hl">Get a Reply Right Away</span></h2>
       <p class="lede">Hurt after hours? Write to us the way you already talk to family. You get a written reply right away, and a meeting with the firm is set for you.</p>
       <ul class="channels">
         <li><span class="ic"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><div><b>Website Chat</b><span>Start on this page, day or night.</span></div></li>
@@ -508,13 +530,13 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
         <a class="btn btn--phone" href="tel:+13039643200"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (303) 964-3200</a>
       </div>
     </div>
-    <div class="phone-chat" aria-label="Example conversation">
+    <div class="phone-chat" role="group" aria-label="Example conversation">
       <div class="who"><img src="img/mark.jpg" width="256" height="253" alt=""><div>Miguel Martínez Injury Lawyers<small>Example conversation</small></div></div>
       <p class="bub bub--out" lang="es">Hola. Me lastimé en el trabajo y mi patrón dice que no puedo reclamar.</p>
       <p class="bub bub--in" lang="es">Lamento lo que le pasó. Sí tiene derechos en Colorado. ¿Me puede decir cuándo ocurrió el accidente?</p>
       <p class="bub bub--out" lang="es">El martes. Todavía no he ido al doctor.</p>
       <p class="bub bub--in" lang="es">Gracias. Su información es confidencial. Le voy a apartar una cita con nuestro equipo.</p>
-      <p class="tag">Example only. Spanish wording to be reviewed by the firm.</p>
+      <p class="note">Example only. Spanish wording to be reviewed by the firm.</p>
     </div>
   </div>
 </section>
@@ -523,64 +545,66 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Google Reviews</p>
-      <h2>What Clients Say About Working With Miguel Martínez</h2>
+      <h2>What <span class="hl">Clients Say</span> About Working With Miguel Martínez</h2>
     </div>
     <div class="reviews">
-      <article class="review">
-        <p>"Thank you guys! We are very happy with your dedication!"</p>
-        <footer><b>Sandra Quintana</b>Posted on Google</footer>
-      </article>
-      <article class="review">
-        <p lang="es">"Doctor Miguel y Crystal mil y mil gracias por su exelente servicio. Dios lo bendiga siempre."</p>
+      <article class="review-big">
+        <div class="q" aria-hidden="true">“</div>
+        <p lang="es">Doctor Miguel y Crystal mil y mil gracias por su exelente servicio. Dios lo bendiga siempre.</p>
         <footer><b>Adriana Villamizar</b>Posted on Google</footer>
+        <svg class="peak" viewBox="0 0 300 200" aria-hidden="true"><path fill="none" stroke="#ffffff" stroke-width="8" d="M4 190L70 30l42 96 34-76 44 110 40-82 62 122"/></svg>
       </article>
-      <article class="review">
-        <p lang="es">"Excelente experiencia. Gracias a Crystal, Felipe y al Dr Miguel por su arduo trabajo recomendable"</p>
-        <footer><b>William</b>Posted on Google</footer>
-      </article>
+      <div class="strips">
+        <article class="strip"><p>"Thank you guys! We are very happy with your dedication!"</p><footer><b>Sandra Quintana</b>, posted on Google</footer></article>
+        <article class="strip"><p lang="es">"Excelente experiencia. Gracias a Crystal, Felipe y al Dr Miguel por su arduo trabajo recomendable"</p><footer><b>William</b>, posted on Google</footer></article>
+        <div class="cta-row"><a class="btn btn--quiet" href="#reviews">Read All Reviews</a></div>
+      </div>
     </div>
-    <div class="cta-row" style="margin-top:26px"><a class="btn btn--quiet" href="#reviews">Read All Reviews</a></div>
   </div>
 </section>
 
 <section class="band band--mist" id="faq">
-  <div class="wrap faq">
-    <div>
+  <div class="wrap">
+    <div class="head">
       <p class="eyebrow">Common Questions</p>
-      <h2>Answers Before You Call</h2>
-      <p class="lede">Still unsure? A free case review costs nothing and commits you to nothing.</p>
-      <div class="cta-row" style="margin-top:22px"><a class="btn btn--main" href="#review">Free Case Review</a></div>
+      <h2>Answers <span class="hl">Before You Call</span></h2>
     </div>
-    <div>
-      <details open><summary>Can I file a claim if I'm undocumented?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><p>Yes. In Colorado, your immigration status does not affect your legal right to file a personal injury or workers' compensation claim. You are entitled to compensation for your injuries regardless of your documentation.</p></details>
-      <details><summary>How much does it cost to hire the firm?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><p>Nothing upfront. We work on a contingency fee basis, so we only get paid if we win your case. Colorado contingency fees typically range from 30 to 40% of the final recovery, and we discuss this clearly before you sign anything.</p></details>
-      <details><summary>How long do I have to file in Colorado?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><p>For most personal injury cases, Colorado law gives you 2 years from the date of injury. Car accident cases have a 3-year window under C.R.S. § 13-80-101. Do not wait, because evidence disappears and witnesses' memories fade.</p></details>
-      <details><summary>What if I was partly at fault?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><p>Colorado follows a "Modified Comparative Negligence" rule under C.R.S. § 13-21-111. If you were less than 50% at fault, you can still recover compensation. It is reduced by your percentage of fault.</p></details>
-      <details><summary>How long will my case take?<svg aria-hidden="true"><use href="#i-chev"/></svg></summary><p>Most straightforward injury cases in Colorado settle within 6 to 18 months. Complex cases can take longer. We give you a realistic timeline at your consultation.</p></details>
+    <div class="faq">
+      <div>
+        <details open><summary>Can I file a claim if I'm undocumented?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. In Colorado, your immigration status does not affect your legal right to file a personal injury or workers' compensation claim. You are entitled to compensation for your injuries regardless of your documentation.</p></details>
+        <details><summary>How much does it cost to hire the firm?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Nothing upfront. We work on a contingency fee basis, so we only get paid if we win your case. Colorado contingency fees typically range from 30 to 40% of the final recovery, and we discuss this clearly before you sign anything.</p></details>
+        <details><summary>How long do I have to file?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>For most personal injury cases, Colorado law gives you 2 years from the date of injury. Car accident cases have a 3-year window under C.R.S. § 13-80-101. Do not wait, because evidence disappears and witnesses' memories fade.</p></details>
+        <details><summary>What if I was partly at fault?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Colorado follows a "Modified Comparative Negligence" rule under C.R.S. § 13-21-111. If you were less than 50% at fault, you can still recover compensation. It is reduced by your percentage of fault.</p></details>
+        <details><summary>How long will my case take?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Most straightforward injury cases in Colorado settle within 6 to 18 months. Complex cases can take longer. We give you a realistic timeline at your consultation.</p></details>
+      </div>
+      <aside class="help">
+        <h3>Still Have a Question?</h3>
+        <dl>
+          <div><dt>Call</dt><dd><a href="tel:+13039643200">(303) 964-3200</a></dd></div>
+          <div><dt>Hours</dt><dd>Mon to Fri: 9:00 AM to 5:00 PM</dd></div>
+          <div><dt>Office</dt><dd>1776 Vine St.<br>Denver, CO 80206</dd></div>
+          <div><dt>Language</dt><dd>English and Spanish. Se Habla Español.</dd></div>
+        </dl>
+        <a class="btn btn--main" href="#review">Free Case Review</a>
+      </aside>
     </div>
   </div>
 </section>
 
-<section class="band band--deep" id="contact">
-  <div class="wrap final">
-    <div>
+<section class="final" id="contact">
+  <img class="final__photo" src="img/miguel-denver.jpg" width="1800" height="1170" alt="Miguel Martínez in Civic Center Park in front of the Denver City and County Building">
+  <div class="final__shade"></div>
+  <div class="wrap">
+    <div class="panel">
       <p class="eyebrow">Free and Confidential</p>
-      <h2>Ready to Fight Back and Protect Everything You've Built?</h2>
+      <h2>Ready to <span class="hl">Fight Back</span> and Protect Everything You've Built?</h2>
       <p class="lede">You have a limited window to act. Tell us what happened and leave knowing your options, at zero cost to you.</p>
-      <div class="cta-row" style="margin-top:26px">
+      <a class="big-phone" href="tel:+13039643200">(303) 964-3200</a>
+      <div class="cta-row">
         <a class="btn btn--main" href="#review">Free Case Review</a>
-        <a class="btn btn--phone" href="tel:+13039643200"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call (303) 964-3200</a>
+        <a class="btn btn--quiet" href="https://www.google.com/maps/search/?api=1&query=1776+Vine+St+Denver+CO+80206" target="_blank" rel="noopener">Get Directions</a>
       </div>
-      <p class="reducer">No obligation. You pay $0 upfront.</p>
-    </div>
-    <div class="office">
-      <h3>Denver Office</h3>
-      <dl>
-        <div><dt>Address</dt><dd>1776 Vine St.<br>Denver, CO 80206</dd></div>
-        <div><dt>Phone</dt><dd><a href="tel:+13039643200">(303) 964-3200</a></dd></div>
-        <div><dt>Hours</dt><dd>Mon to Fri: 9:00 AM to 5:00 PM<br>Sat and Sun: Closed</dd></div>
-      </dl>
-      <a class="btn btn--quiet" href="https://www.google.com/maps/search/?api=1&query=1776+Vine+St+Denver+CO+80206" target="_blank" rel="noopener">Get Directions</a>
+      <small>No obligation. You pay $0 upfront.</small>
     </div>
   </div>
 </section>
@@ -589,13 +613,24 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
 <footer class="foot">
   <div class="wrap">
     <div class="foot__top">
-      <img src="img/logo-light.png" width="720" height="228" alt="Miguel Martínez Injury Lawyers">
-      <nav aria-label="Footer">
-        <a href="#top">Home</a><a href="#workers-comp">Workers' Compensation</a><a href="#injury">Personal Injury</a><a href="#miguel">About Miguel</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="#top" lang="es">Español</a>
-      </nav>
+      <div class="foot__brand">
+        <img src="img/logo-light.png" width="720" height="228" alt="Miguel Martínez Injury Lawyers">
+        <p>Workers' compensation and injury lawyers. Se Habla Español. Con Miguel Martínez Si Ganas!</p>
+        <a class="btn btn--main" href="#review">Free Case Review</a>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul><li><a href="#top">Home</a></li><li><a href="#areas">Workers' Compensation</a></li><li><a href="#areas">Personal Injury</a></li><li><a href="#miguel">About Miguel</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#top" lang="es">Español</a></li></ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul><li>1776 Vine St.</li><li>Denver, CO 80206</li><li><a href="tel:+13039643200">(303) 964-3200</a></li><li>Mon to Fri: 9:00 AM to 5:00 PM</li><li>Sat and Sun: Closed</li></ul>
+      </div>
     </div>
-    <p>Miguel Martinez Injury Lawyers is a trade name of Law Offices of Miguel Martinez, P.C. Attorney advertising. The information on this website is for general information only and is not legal advice. Contacting us does not create an attorney-client relationship. Past results do not guarantee future outcomes.</p>
-    <p>© 2026 Miguel Martínez Injury Lawyers. All Rights Reserved. &nbsp;|&nbsp; <a href="#top">Privacy Policy</a></p>
+    <div class="foot__legal">
+      <p>Miguel Martinez Injury Lawyers is a trade name of Law Offices of Miguel Martinez, P.C. Attorney advertising. The information on this website is for general information only and is not legal advice. Contacting us does not create an attorney-client relationship. Past results do not guarantee future outcomes.</p>
+      <p>© 2026 Miguel Martínez Injury Lawyers. All Rights Reserved. &nbsp;|&nbsp; <a href="#top">Privacy Policy</a></p>
+    </div>
   </div>
 </footer>
 
@@ -612,10 +647,10 @@ details p{padding:0 2px 20px;color:var(--body);max-width:68ch}
   b.addEventListener('click',function(){set(n.hidden);});
   n.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!n.hidden){set(false);b.focus();}});
-  window.addEventListener('resize',function(){if(window.innerWidth>1180)set(false);});
-  var form=document.getElementById('review'),step=document.getElementById('step2'),cs=[].slice.call(document.querySelectorAll('.choice'));
-  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){o.setAttribute('aria-pressed',o===c?'true':'false');});step.hidden=false;});});
-  form.addEventListener('submit',function(e){e.preventDefault();step.hidden=false;document.getElementById('formNote').hidden=false;});
+  window.addEventListener('resize',function(){if(window.innerWidth>1240)set(false);});
+  var form=document.getElementById('review'),cs=[].slice.call(document.querySelectorAll('.choice'));
+  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){o.setAttribute('aria-pressed',o===c?'true':'false');});document.getElementById('f-name').focus();});});
+  form.addEventListener('submit',function(e){e.preventDefault();document.getElementById('formNote').hidden=false;});
   var f=document.querySelector('.float');
   if('IntersectionObserver' in window){new IntersectionObserver(function(en){f.style.visibility=en[0].isIntersecting?'hidden':'visible';}).observe(form);}
 })();
