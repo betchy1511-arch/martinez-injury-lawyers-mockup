@@ -632,6 +632,12 @@ h2 .hl{white-space:nowrap}
 .step2{grid-template-columns:repeat(3,minmax(0,1fr))}
 .step2 > .btn{grid-column:1 / -1}
 @media (max-width:700px){.step2{grid-template-columns:minmax(0,1fr)}}
+/* 19 Nov (9): intake heading above the form, so an opened form never leaves gaps beside it */
+.intake .wrap{grid-template-columns:minmax(0,1fr)!important;gap:22px;align-items:start}
+.intake .wrap > div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 48px;align-items:end}
+.intake .wrap > div:first-child .eyebrow{grid-column:1 / -1}
+.intake .wrap > div:first-child .lede{margin:0;padding-bottom:6px}
+@media (max-width:700px){.intake .wrap > div:first-child{grid-template-columns:minmax(0,1fr)}.intake .wrap{gap:14px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
