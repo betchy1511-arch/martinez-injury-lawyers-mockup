@@ -628,6 +628,10 @@ h2 .hl{white-space:nowrap}
   .rail-bar span{position:absolute;top:0;bottom:0;left:0;background:var(--gold);border-radius:3px}
 }
 @media (min-width:701px){.rail-bar{display:none}}
+/* 19 Nov (8): intake = client's own fields (message + name + email + phone) */
+.step2{grid-template-columns:repeat(3,minmax(0,1fr))}
+.step2 > .btn{grid-column:1 / -1}
+@media (max-width:700px){.step2{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -741,31 +745,17 @@ h2 .hl{white-space:nowrap}
     </div>
     <form id="review" novalidate>
       <div class="choices" role="group" aria-label="What happened?">
-        <button class="choice" type="button" aria-pressed="false" aria-controls="x-work" data-x="x-work"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
-        <button class="choice" type="button" aria-pressed="false" aria-controls="x-crash" data-x="x-crash"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
-        <button class="choice" type="button" aria-pressed="false" aria-controls="x-other" data-x="x-other"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-msg" data-x="x-msg"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-msg" data-x="x-msg"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-msg" data-x="x-msg"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
       </div>
-      <div class="extra" id="x-work" hidden>
-        <div><label for="w-date">When did it happen?</label><input id="w-date" name="injury_date" type="date"></div>
-        <fieldset class="pills"><legend>Did you tell your employer yet?</legend>
-          <label><input type="radio" name="told_employer" value="yes"><span>Yes</span></label>
-          <label><input type="radio" name="told_employer" value="no"><span>No</span></label>
-          <label><input type="radio" name="told_employer" value="not-sure"><span>Not sure</span></label>
-        </fieldset>
-      </div>
-      <div class="extra" id="x-crash" hidden>
-        <div><label for="c-date">When was the crash?</label><input id="c-date" name="crash_date" type="date"></div>
-        <fieldset class="pills"><legend>Were you hurt?</legend>
-          <label><input type="radio" name="hurt" value="yes"><span>Yes</span></label>
-          <label><input type="radio" name="hurt" value="no"><span>No</span></label>
-          <label><input type="radio" name="hurt" value="not-sure"><span>Not sure</span></label>
-        </fieldset>
-      </div>
-      <div class="extra extra--one" id="x-other" hidden>
+      <input type="hidden" name="case_type" id="f-case" value="">
+      <div class="extra extra--one" id="x-msg" hidden>
         <div><label for="o-what">Tell us briefly what happened</label><textarea id="o-what" name="what_happened" rows="2" placeholder="A sentence or two is enough."></textarea></div>
       </div>
       <div class="step2">
         <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="Full name"></div>
+        <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
         <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(303) 000-0000"></div>
         <button class="btn btn--main" type="submit">Get My Free Case Review</button>
       </div>
@@ -1124,7 +1114,7 @@ h2 .hl{white-space:nowrap}
     function upd(){var sw=r.scrollWidth,cw=r.clientWidth;if(sw<=cw+2){bar.style.display='none';return;}bar.style.display='';sp.style.width=(cw/sw*100)+'%';sp.style.left=(r.scrollLeft/sw*100)+'%';}
     r.addEventListener('scroll',upd,{passive:true});r.addEventListener('focusin',function(e){if(getComputedStyle(r).display!=='flex')return;var c=e.target.closest('.swipe > *');if(c&&c.parentNode===r){r.scrollLeft=c.offsetLeft-r.firstElementChild.offsetLeft;}});window.addEventListener('resize',upd);upd();});
   var form=document.getElementById('review'),cs=[].slice.call(document.querySelectorAll('.choice'));
-  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){var on=o===c;o.setAttribute('aria-pressed',on?'true':'false');var x=document.getElementById(o.getAttribute('data-x'));if(x){x.hidden=!on;}});var panel=document.getElementById(c.getAttribute('data-x'));var first=panel&&panel.querySelector('input,textarea');(first||document.getElementById('f-name')).focus({preventScroll:true});});});
+  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){o.setAttribute('aria-pressed',o===c?'true':'false');});var x=document.getElementById(c.getAttribute('data-x'));if(x){x.hidden=false;}document.getElementById('f-case').value=c.textContent.trim();var panel=document.getElementById(c.getAttribute('data-x'));var first=panel&&panel.querySelector('input,textarea');(first||document.getElementById('f-name')).focus({preventScroll:true});});});
   form.addEventListener('submit',function(e){e.preventDefault();document.getElementById('formNote').hidden=false;});
   var f=document.querySelector('.float');
   if('IntersectionObserver' in window){new IntersectionObserver(function(en){f.style.visibility=en[0].isIntersecting?'hidden':'visible';}).observe(form);}
