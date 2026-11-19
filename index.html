@@ -606,6 +606,28 @@ h2 .hl{white-space:nowrap}
   .rc-ctrl{justify-content:center}
   .rc-bar .btn{width:100%}
 }
+/* 19 Nov (7): phone swipe rows (Dimi via the Omni redesign: "more scrollable sideways in mobile ... goes on forever") */
+@media (max-width:700px){
+  .swipe{display:flex!important;grid-template-columns:none!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;margin-left:-20px;margin-right:-20px;padding:4px 20px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-padding-inline:20px}
+  .swipe::-webkit-scrollbar{display:none}
+  .swipe > *{flex:0 0 82%;min-width:0;scroll-snap-align:start;grid-column:auto!important}
+  .areas.swipe > .area{display:flex;flex-direction:column}
+  .areas.swipe .area__body{flex:1;display:flex;flex-direction:column}
+  .areas.swipe .area__body .btn{margin-top:auto}
+  .areas.swipe .area:not(.area--lead) ul{display:block}
+  .areas.swipe .area:not(.area--lead) .btn{font-size:14px}
+  .areas.swipe .area:not(.area--lead) .btn::after{content:none}
+  .areas.swipe .area__img,.areas.swipe .area--lead .area__img{aspect-ratio:16/9}
+  .areas.swipe .area h3{font-size:18px}
+  .pillars.swipe{margin:14px -20px 18px;list-style:none}
+  .pillars.swipe li{display:block;background:var(--mist);border-top:3px solid var(--gold);border-radius:6px;padding:16px!important}
+  .pillars.swipe li b{display:block;margin-bottom:6px}
+  .offices.swipe > .office{flex-basis:84%}
+  .rail-bar{height:3px;background:var(--line);border-radius:3px;margin:10px 0 0;position:relative;overflow:hidden}
+  .pillars.swipe + .rail-bar{margin:0 0 20px}
+  .rail-bar span{position:absolute;top:0;bottom:0;left:0;background:var(--gold);border-radius:3px}
+}
+@media (min-width:701px){.rail-bar{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -786,7 +808,7 @@ h2 .hl{white-space:nowrap}
       <p class="eyebrow">How We Help</p>
       <h2>The <span class="hl">Legal Protection</span> <span class="hl">Colorado Families</span> Actually Need</h2>
     </div>
-    <div class="areas">
+    <div class="areas swipe" aria-label="Practice areas">
       <article class="area area--lead">
         <img class="area__img" src="img/wc.jpg" width="1200" height="800" loading="lazy" alt="A construction worker helping an injured co-worker off a job site">
         <div class="area__body">
@@ -861,7 +883,7 @@ h2 .hl{white-space:nowrap}
       <p class="eyebrow">Meet Miguel Martínez</p>
       <h2>He Knows How <span class="hl">the Other Side Thinks</span></h2>
       <p class="lede">He is not just your attorney. He is your advocate, your neighbor, and someone who has faced the same fears his clients face.</p>
-      <ul class="pillars">
+      <ul class="pillars swipe" aria-label="Miguel's background">
         <li><b>Former Prosecutor</b><span>Eight years as an Assistant District Attorney and an Assistant U.S. Attorney before representing injured people.</span></li>
         <li><b>Veteran</b><span>U.S. Army Field Medic in Vietnam, honorably discharged in 1973.</span></li>
         <li><b>Advocate</b><span>Came to the United States from Mexico at 16. In private practice in Colorado since 1989.</span></li>
@@ -991,7 +1013,7 @@ h2 .hl{white-space:nowrap}
       <p class="eyebrow">Our Offices</p>
       <h2>Visit Us in <span class="hl">Denver or Greeley</span></h2>
     </div>
-    <div class="offices">
+    <div class="offices swipe" aria-label="Office locations">
       <article class="office">
         <div class="office__map"><iframe title="Map to the Denver office at 1776 Vine St." src="https://www.google.com/maps?q=1776+Vine+St,+Denver,+CO+80206&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         <div class="office__body">
@@ -1098,6 +1120,9 @@ h2 .hl{white-space:nowrap}
     window.addEventListener('resize',draw);draw();
     if('IntersectionObserver' in window){new IntersectionObserver(function(en){en[0].isIntersecting?start():stop();},{threshold:.3}).observe(rc);}else{start();}
   })();
+  [].forEach.call(document.querySelectorAll('.swipe'),function(r){var bar=document.createElement('div');bar.className='rail-bar';bar.setAttribute('aria-hidden','true');var sp=document.createElement('span');bar.appendChild(sp);r.parentNode.insertBefore(bar,r.nextSibling);
+    function upd(){var sw=r.scrollWidth,cw=r.clientWidth;if(sw<=cw+2){bar.style.display='none';return;}bar.style.display='';sp.style.width=(cw/sw*100)+'%';sp.style.left=(r.scrollLeft/sw*100)+'%';}
+    r.addEventListener('scroll',upd,{passive:true});r.addEventListener('focusin',function(e){if(getComputedStyle(r).display!=='flex')return;var c=e.target.closest('.swipe > *');if(c&&c.parentNode===r){r.scrollLeft=c.offsetLeft-r.firstElementChild.offsetLeft;}});window.addEventListener('resize',upd);upd();});
   var form=document.getElementById('review'),cs=[].slice.call(document.querySelectorAll('.choice'));
   cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){var on=o===c;o.setAttribute('aria-pressed',on?'true':'false');var x=document.getElementById(o.getAttribute('data-x'));if(x){x.hidden=!on;}});var panel=document.getElementById(c.getAttribute('data-x'));var first=panel&&panel.querySelector('input,textarea');(first||document.getElementById('f-name')).focus({preventScroll:true});});});
   form.addEventListener('submit',function(e){e.preventDefault();document.getElementById('formNote').hidden=false;});
