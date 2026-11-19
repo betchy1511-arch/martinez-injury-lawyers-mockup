@@ -468,8 +468,6 @@ h2 .hl{white-space:nowrap}
 .review-wrap .strip p{font-style:normal;font-size:16.5px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 @media (min-width:701px) and (max-width:960px){
   .review-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .review-big{grid-column:1 / -1;grid-row:auto}
-  .review-wrap .strip:nth-of-type(12){display:none}
 }
 .reviews-more{margin-top:26px}
 .offices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.6vw,32px)}
@@ -502,6 +500,60 @@ h2 .hl{white-space:nowrap}
   .office__body p{font-size:15.5px}
   .office__body .btn{width:100%}
 }
+/* 19 Nov (2): one-line headings on desktop + steps animation */
+@media (min-width:1101px){
+  .callband h2{white-space:nowrap;font-size:min(40px,3.15vw)}
+  .miguel{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr)}
+  #miguel h2{white-space:nowrap;font-size:min(36px,3.05vw)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .js .steps::before{transform:scaleY(0);transform-origin:top;transition:transform 1.5s cubic-bezier(.65,0,.35,1) .2s}
+  .js .steps.in::before{transform:scaleY(1)}
+  .js .steps li{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .js .steps .n{transform:scale(.55);transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
+  .js .steps.in li{opacity:1;transform:none}
+  .js .steps.in .n{transform:scale(1)}
+  .js .steps li:nth-child(1),.js .steps li:nth-child(1) .n{transition-delay:.15s}
+  .js .steps li:nth-child(2),.js .steps li:nth-child(2) .n{transition-delay:.65s}
+  .js .steps li:nth-child(3),.js .steps li:nth-child(3) .n{transition-delay:1.15s}
+}
+/* 19 Nov (3): reviews decluttered */
+.review-wrap{gap:0 56px}
+.review-big{grid-column:1 / -1;grid-row:auto;background:none;color:var(--ink);border-radius:0;padding:0 0 30px;margin:0 0 6px;border-bottom:1px solid var(--line);max-width:none}
+.review-big .peak{display:none}
+.review-big .q{height:40px}
+.review-big p{color:var(--ink);font-size:clamp(20px,1.85vw,26px);max-width:1000px;-webkit-line-clamp:4}
+.review-big footer,.review-big footer b{color:var(--ink)}
+.review-big footer{color:var(--muted)}
+.review-wrap .strip .stars{display:none}
+.review-wrap .strip{padding:26px 0 28px;border-top:0;border-bottom:1px solid var(--line)}
+.review-wrap .strip p{-webkit-line-clamp:3;font-size:16.5px;line-height:1.65}
+.review-wrap .strip footer{margin-top:12px}
+.review-wrap .reviews-more{margin:0;display:flex;align-items:center;padding:26px 0 28px;border-bottom:1px solid var(--line)}
+@media (max-width:700px){
+  .review-big{padding:0 0 18px}
+  .review-wrap .strip{padding:16px 0}
+  .review-wrap .reviews-more{padding:20px 0 0;border-bottom:0}
+}
+/* 19 Nov (4): opening reveal on page load, same sequence as the Magister Digital site */
+.mm-intro{position:fixed;inset:0;z-index:9999;overflow:hidden;pointer-events:none;animation:mmIntroDone 0s linear 2.85s both}
+.mm-intro-pane{position:absolute;left:0;right:0;height:50.5%;background:var(--ink);will-change:transform}
+.mm-intro-pane-t{top:0;animation:mmPaneUp 1.05s cubic-bezier(.76,0,.24,1) 1.8s both}
+.mm-intro-pane-b{bottom:0;animation:mmPaneDown 1.05s cubic-bezier(.76,0,.24,1) 1.8s both}
+.mm-intro-seam{position:absolute;left:0;right:0;top:50%;height:1px;z-index:2;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);animation:mmSeam .85s cubic-bezier(.16,1,.3,1) 1.3s both,mmSeamOut .45s 2.1s both}
+.mm-intro-center{position:absolute;inset:0;z-index:3;display:grid;place-content:center;justify-items:center;gap:22px;animation:mmCenterOut .55s cubic-bezier(.7,0,.3,1) 1.6s both}
+.mm-intro-logo{width:min(60vw,380px);height:auto;animation:mmLogo 1.15s cubic-bezier(.16,1,.3,1) .12s both}
+.mm-intro-rule{display:block;width:min(60vw,380px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);animation:mmRule .9s cubic-bezier(.16,1,.3,1) .75s both}
+@keyframes mmIntroDone{to{visibility:hidden}}
+@keyframes mmPaneUp{to{transform:translateY(-100%)}}
+@keyframes mmPaneDown{to{transform:translateY(100%)}}
+@keyframes mmSeam{to{transform:scaleX(1)}}
+@keyframes mmSeamOut{to{opacity:0}}
+@keyframes mmCenterOut{to{opacity:0;transform:scale(1.03)}}
+@keyframes mmLogo{from{opacity:0;transform:translateY(16px) scale(.94);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes mmRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.js .hero .hl{transition-delay:2.6s}
+@media (prefers-reduced-motion:reduce){.mm-intro{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -521,6 +573,15 @@ h2 .hl{white-space:nowrap}
   <symbol id="i-menu" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
 </svg>
 
+<div class="mm-intro" aria-hidden="true">
+  <span class="mm-intro-pane mm-intro-pane-t"></span>
+  <span class="mm-intro-pane mm-intro-pane-b"></span>
+  <span class="mm-intro-seam"></span>
+  <span class="mm-intro-center">
+    <img src="img/logo-light.png" class="mm-intro-logo" alt="" width="720" height="228" decoding="async">
+    <span class="mm-intro-rule"></span>
+  </span>
+</div>
 <a class="skip" href="#main">Skip to content</a>
 <div class="util">
   <div class="wrap">
@@ -818,8 +879,8 @@ h2 .hl{white-space:nowrap}
       <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Great service, I would highly recommend this office , very easy to work with , understanding and friendly with an outstanding team. Handled our case professionally and efficiently."</p><footer><b>Karla Staley</b>, posted on Google</footer></article>
       <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Amazing work! Really satisfied would recommend"</p><footer><b>Edith Guerra</b>, posted on Google</footer></article>
       <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Thank you guys! We are very happy with your dedication!"</p><footer><b>Sandra Quintana</b>, posted on Google</footer></article>
+          <p class="reviews-more"><a class="btn btn--quiet" href="https://maps.app.goo.gl/TXczCepYbeuz3xTA9" target="_blank" rel="noopener">Read All Reviews on Google</a></p>
     </div>
-    <p class="reviews-more"><a class="btn btn--quiet" href="https://maps.app.goo.gl/TXczCepYbeuz3xTA9" target="_blank" rel="noopener">Read All Reviews on Google</a></p>
   </div>
 </section>
 
@@ -939,6 +1000,7 @@ h2 .hl{white-space:nowrap}
   document.documentElement.classList.add('js');
   var hls=[].slice.call(document.querySelectorAll('.hl'));
   if('IntersectionObserver' in window){var ho=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');ho.unobserve(x.target);}});},{threshold:.6});hls.forEach(function(h){ho.observe(h);});}else{hls.forEach(function(h){h.classList.add('in');});}
+  var st=document.querySelector('.steps');if(st){if('IntersectionObserver' in window){var so=new IntersectionObserver(function(en){if(en[0].isIntersecting){st.classList.add('in');so.disconnect();}},{threshold:.3});so.observe(st);}else{st.classList.add('in');}}
   var b=document.getElementById('menuBtn'),n=document.getElementById('mobileNav');
   var hd=document.getElementById('top');function solid(){hd.classList.toggle('is-solid',window.scrollY>30||!n.hidden);}
   window.addEventListener('scroll',solid,{passive:true});
