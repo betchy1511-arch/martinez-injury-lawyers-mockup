@@ -554,6 +554,26 @@ h2 .hl{white-space:nowrap}
 @keyframes mmRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .js .hero .hl{transition-delay:2.6s}
 @media (prefers-reduced-motion:reduce){.mm-intro{display:none}}
+/* 19 Nov (5): each intake choice opens its own short question */
+.extra{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:12px 16px;align-items:start;margin-top:14px;padding:16px 18px;background:var(--white);border:1.5px solid var(--line);border-left:4px solid var(--gold);border-radius:8px}
+.extra[hidden]{display:none}
+.extra--one{grid-template-columns:minmax(0,1fr)}
+.extra textarea{width:100%;font:inherit;font-size:16.5px;color:var(--ink);background:var(--white);border:1.5px solid #6f858f;border-radius:6px;padding:11px 12px;min-height:54px;resize:vertical}
+.extra textarea:focus{outline:3px solid rgba(19,97,138,.3);border-color:var(--blue)}
+.pills{border:0;margin:0;padding:0;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px}
+.pills legend{grid-column:1/-1;float:left;width:100%;padding:0;font-family:var(--display);font-weight:600;font-size:13.5px;line-height:1.5;color:var(--ink);margin:0 0 5px}
+.extra > div > label{line-height:1.5}
+.pills label{margin:0;position:relative}
+.pills input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.pills span{display:flex;align-items:center;justify-content:center;min-height:54px;padding:8px 10px;border:1.5px solid var(--blue);border-radius:6px;background:var(--white);color:var(--blue);font-family:var(--display);font-weight:700;font-size:15px;cursor:pointer;text-align:center}
+.pills input:checked + span{background:var(--blue);color:var(--white)}
+.pills input:focus-visible + span{outline:3px solid rgba(19,97,138,.35);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.extra:not([hidden]){animation:extraIn .35s ease both}}
+@keyframes extraIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (max-width:700px){
+  .extra{grid-template-columns:minmax(0,1fr);padding:14px}
+  .pills span{min-height:48px}
+}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -667,12 +687,31 @@ h2 .hl{white-space:nowrap}
     </div>
     <form id="review" novalidate>
       <div class="choices" role="group" aria-label="What happened?">
-        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
-        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
-        <button class="choice" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-work" data-x="x-work"><svg aria-hidden="true"><use href="#i-work"/></svg>I was hurt at work</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-crash" data-x="x-crash"><svg aria-hidden="true"><use href="#i-car"/></svg>Car or truck crash</button>
+        <button class="choice" type="button" aria-pressed="false" aria-controls="x-other" data-x="x-other"><svg aria-hidden="true"><use href="#i-chat"/></svg>Something else</button>
+      </div>
+      <div class="extra" id="x-work" hidden>
+        <div><label for="w-date">When did it happen?</label><input id="w-date" name="injury_date" type="date"></div>
+        <fieldset class="pills"><legend>Did you tell your employer yet?</legend>
+          <label><input type="radio" name="told_employer" value="yes"><span>Yes</span></label>
+          <label><input type="radio" name="told_employer" value="no"><span>No</span></label>
+          <label><input type="radio" name="told_employer" value="not-sure"><span>Not sure</span></label>
+        </fieldset>
+      </div>
+      <div class="extra" id="x-crash" hidden>
+        <div><label for="c-date">When was the crash?</label><input id="c-date" name="crash_date" type="date"></div>
+        <fieldset class="pills"><legend>Were you hurt?</legend>
+          <label><input type="radio" name="hurt" value="yes"><span>Yes</span></label>
+          <label><input type="radio" name="hurt" value="no"><span>No</span></label>
+          <label><input type="radio" name="hurt" value="not-sure"><span>Not sure</span></label>
+        </fieldset>
+      </div>
+      <div class="extra extra--one" id="x-other" hidden>
+        <div><label for="o-what">Tell us briefly what happened</label><textarea id="o-what" name="what_happened" rows="2" placeholder="A sentence or two is enough."></textarea></div>
       </div>
       <div class="step2">
-        <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="First and last name"></div>
+        <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="Full name"></div>
         <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(303) 000-0000"></div>
         <button class="btn btn--main" type="submit">Get My Free Case Review</button>
       </div>
@@ -1011,7 +1050,7 @@ h2 .hl{white-space:nowrap}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!n.hidden){set(false);b.focus();}});
   window.addEventListener('resize',function(){if(window.innerWidth>1240)set(false);});
   var form=document.getElementById('review'),cs=[].slice.call(document.querySelectorAll('.choice'));
-  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){o.setAttribute('aria-pressed',o===c?'true':'false');});document.getElementById('f-name').focus();});});
+  cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){var on=o===c;o.setAttribute('aria-pressed',on?'true':'false');var x=document.getElementById(o.getAttribute('data-x'));if(x){x.hidden=!on;}});var panel=document.getElementById(c.getAttribute('data-x'));var first=panel&&panel.querySelector('input,textarea');(first||document.getElementById('f-name')).focus({preventScroll:true});});});
   form.addEventListener('submit',function(e){e.preventDefault();document.getElementById('formNote').hidden=false;});
   var f=document.querySelector('.float');
   if('IntersectionObserver' in window){new IntersectionObserver(function(en){f.style.visibility=en[0].isIntersecting?'hidden':'visible';}).observe(form);}
