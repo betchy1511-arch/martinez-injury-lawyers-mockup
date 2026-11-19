@@ -574,6 +574,38 @@ h2 .hl{white-space:nowrap}
   .extra{grid-template-columns:minmax(0,1fr);padding:14px}
   .pills span{min-height:48px}
 }
+/* 19 Nov (6): reviews carousel, 6 reviews */
+.review-wrap{display:block}
+.review-big{margin-bottom:28px}
+.rc{position:relative}
+.rc-view{overflow:hidden}
+.rc-track{display:flex;transition:transform .7s cubic-bezier(.65,0,.35,1);will-change:transform}
+.rc-slide{flex:0 0 calc(100% / var(--per,3));padding:0 14px;box-sizing:border-box}
+.rc-track{margin:0 -14px}
+.rc-card{height:100%;background:var(--mist);border:0;border-top:3px solid var(--gold);border-radius:6px;padding:24px 24px 22px!important;display:flex!important;flex-direction:column}
+.rc-card .stars{display:flex!important;margin-bottom:12px}
+.rc-card p{display:-webkit-box!important;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:5!important;font-size:16.5px;line-height:1.6;font-style:normal}
+.rc-card footer{margin-top:auto;padding-top:14px}
+.rc-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;flex-wrap:wrap}
+.rc-ctrl{display:flex;align-items:center;gap:14px}
+.rc-btn{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--blue);background:var(--blue);color:var(--white);display:grid;place-items:center;cursor:pointer}
+.rc-btn svg{width:20px;height:20px}
+.rc-btn:hover{background:#0f5074}
+.rc-btn:focus-visible,.rc-dot:focus-visible{outline:3px solid rgba(19,97,138,.4);outline-offset:3px}
+.rc-dots{display:flex;gap:8px}
+.rc-dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:#c8d0d4;cursor:pointer}
+.rc-dot[aria-selected="true"]{background:var(--gold);width:28px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){.rc-track{transition:none}}
+@media (max-width:960px){.rc{--per:2}}
+@media (max-width:700px){
+  .rc{--per:1}
+  .review-big{margin-bottom:18px}
+  .rc-card{padding:18px!important}
+  .rc-card p{font-size:15px;-webkit-line-clamp:6!important}
+  .rc-bar{flex-direction:column-reverse;align-items:stretch}
+  .rc-ctrl{justify-content:center}
+  .rc-bar .btn{width:100%}
+}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -907,18 +939,26 @@ h2 .hl{white-space:nowrap}
         <footer><b>Niki Navarro</b>Posted on Google</footer>
         <svg class="peak" viewBox="0 0 300 200" aria-hidden="true"><path fill="none" stroke="#ffffff" stroke-width="8" d="M4 190L70 30l42 96 34-76 44 110 40-82 62 122"/></svg>
       </article>
-        <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Miguel is a great attorney, he help me with my case and he made sure I got the most out of the insurance."</p><footer><b>Mirian Cruz</b>, posted on Google</footer></article>
-        <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I hired Miguel’s firm for my case a few months ago. James did a very good job with my case, he was always communicating with me and giving me updates. I recommend this firm 100%!"</p><footer><b>Christopher C</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I have 2 cases and Miguel Martinez took care of me and my family. I had reached out to 10 different law offices, and not 1 of them  would take my case. I called Miguel Martinez and he got me in immediately. Thank you to Joe and everyone at Miguel Martinez law."</p><footer><b>Dee Jay</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"MIGUEL MARTINEZ has represe twice in 12 years and delighted with his services. They always do their work with heart, and treated me with dignity, compassion,  and respect,"</p><footer><b>Evelia Hurtado</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I would highly recommend Miguel Martinez and his law firm, very nice and upfront people. I have already used them twice, James Chiu has been such a blessing for us. He did a phenomenal job both times, he explained everything so well and always a phone call away with an answer to every question I had. I will use them again without a doubt."</p><footer><b>Jacqueline Pacheco</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Miguel Martínez’s law Firm has been part of the family. I have used their services for the last seven years. They are reliable, kind, respectful and compassionate for helping others .recently , James a lawyer from the Law Firm helped my uncle out with a case. He was very professional very communicative, and put out mind at ease. I highly recommend James and Miguel Miguel‘s attorney Law Firm . You will not just have an attorney by your side, but they will treat you like family. Thank you so much I highly recommend them !"</p><footer><b>Stephanie Dovalina</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I would highly recommend Miguel Martinez and his law firm, James Chiu has been such a blessing for my husband and i, he explained everything so well and always a phone call away with an answer to every question I had. We couldn’t thank him enough for all his help and support, my family and i will use them again without a doubt."</p><footer><b>Mariana Acosta</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I don't usually get into trouble, but I did, and I went to them, and it was the best thing I did. Excellent service, undeniable professionalism, and above all, the certainty that everything would turn out alright, and it did. I have a clean record and peace of mind, thank God. I recommend them 100%."</p><footer><b>Christian Cruz</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Great service, I would highly recommend this office , very easy to work with , understanding and friendly with an outstanding team. Handled our case professionally and efficiently."</p><footer><b>Karla Staley</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Amazing work! Really satisfied would recommend"</p><footer><b>Edith Guerra</b>, posted on Google</footer></article>
-      <article class="strip"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Thank you guys! We are very happy with your dedication!"</p><footer><b>Sandra Quintana</b>, posted on Google</footer></article>
-          <p class="reviews-more"><a class="btn btn--quiet" href="https://maps.app.goo.gl/TXczCepYbeuz3xTA9" target="_blank" rel="noopener">Read All Reviews on Google</a></p>
+    </div>
+    <div class="rc" aria-roledescription="carousel" aria-label="Client reviews">
+      <div class="rc-view">
+        <div class="rc-track">
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="1 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Miguel is a great attorney, he help me with my case and he made sure I got the most out of the insurance."</p><footer><b>Mirian Cruz</b>, posted on Google</footer></article></div>
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="2 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I hired Miguel’s firm for my case a few months ago. James did a very good job with my case, he was always communicating with me and giving me updates. I recommend this firm 100%!"</p><footer><b>Christopher C</b>, posted on Google</footer></article></div>
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="3 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I have 2 cases and Miguel Martinez took care of me and my family. I had reached out to 10 different law offices, and not 1 of them  would take my case. I called Miguel Martinez and he got me in immediately. Thank you to Joe and everyone at Miguel Martinez law."</p><footer><b>Dee Jay</b>, posted on Google</footer></article></div>
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="4 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"MIGUEL MARTINEZ has represe twice in 12 years and delighted with his services. They always do their work with heart, and treated me with dignity, compassion,  and respect,"</p><footer><b>Evelia Hurtado</b>, posted on Google</footer></article></div>
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="5 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"I would highly recommend Miguel Martinez and his law firm, very nice and upfront people. I have already used them twice, James Chiu has been such a blessing for us. He did a phenomenal job both times, he explained everything so well and always a phone call away with an answer to every question I had. I will use them again without a doubt."</p><footer><b>Jacqueline Pacheco</b>, posted on Google</footer></article></div>
+          <div class="rc-slide" role="group" aria-roledescription="slide" aria-label="6 of 6"><article class="strip rc-card"><span class="stars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></span><p>"Miguel Martínez’s law Firm has been part of the family. I have used their services for the last seven years. They are reliable, kind, respectful and compassionate for helping others .recently , James a lawyer from the Law Firm helped my uncle out with a case. He was very professional very communicative, and put out mind at ease. I highly recommend James and Miguel Miguel‘s attorney Law Firm . You will not just have an attorney by your side, but they will treat you like family. Thank you so much I highly recommend them !"</p><footer><b>Stephanie Dovalina</b>, posted on Google</footer></article></div>
+        </div>
+      </div>
+      <div class="rc-bar">
+        <a class="btn btn--quiet" href="https://maps.app.goo.gl/TXczCepYbeuz3xTA9" target="_blank" rel="noopener">Read All Reviews on Google</a>
+        <div class="rc-ctrl">
+          <button class="rc-btn rc-prev" type="button" aria-label="Previous reviews"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg></button>
+          <div class="rc-dots" aria-label="Choose reviews"></div>
+          <button class="rc-btn rc-next" type="button" aria-label="Next reviews"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1049,6 +1089,24 @@ h2 .hl{white-space:nowrap}
   n.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!n.hidden){set(false);b.focus();}});
   window.addEventListener('resize',function(){if(window.innerWidth>1240)set(false);});
+  (function(){var rc=document.querySelector('.rc');if(!rc)return;var tr=rc.querySelector('.rc-track'),sl=[].slice.call(rc.querySelectorAll('.rc-slide')),dots=rc.querySelector('.rc-dots'),i=0,timer=null,rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function per(){return parseInt(getComputedStyle(rc).getPropertyValue('--per'))||3;}
+    function pages(){return Math.max(1,Math.ceil(sl.length/per()));}
+    function draw(){var n=pages();if(dots.children.length!==n){dots.innerHTML='';for(var k=0;k<n;k++){var d=document.createElement('button');d.type='button';d.className='rc-dot';d.setAttribute('aria-label','Reviews page '+(k+1));(function(k){d.addEventListener('click',function(){go(k);restart();});})(k);dots.appendChild(d);}}
+      if(i>n-1)i=0;var first=Math.min(i*per(),sl.length-per());tr.style.transform='translateX('+(-first*100/per())+'%)';
+      [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-selected',k===i?'true':'false');if(k===i){d.setAttribute('aria-current','true');}else{d.removeAttribute('aria-current');}});
+      sl.forEach(function(s,k){var vis=k>=first&&k<first+per();s.setAttribute('aria-hidden',vis?'false':'true');});}
+    function go(k){var n=pages();i=(k+n)%n;draw();}
+    function start(){if(rm)return;stop();timer=setInterval(function(){go(i+1);},6000);}
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    function restart(){stop();start();}
+    rc.querySelector('.rc-prev').addEventListener('click',function(){go(i-1);restart();});
+    rc.querySelector('.rc-next').addEventListener('click',function(){go(i+1);restart();});
+    rc.addEventListener('mouseenter',stop);rc.addEventListener('mouseleave',start);rc.addEventListener('focusin',stop);rc.addEventListener('focusout',start);
+    var x0=null;rc.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;stop();},{passive:true});rc.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null;start();},{passive:true});
+    window.addEventListener('resize',draw);draw();
+    if('IntersectionObserver' in window){new IntersectionObserver(function(en){en[0].isIntersecting?start():stop();},{threshold:.3}).observe(rc);}else{start();}
+  })();
   var form=document.getElementById('review'),cs=[].slice.call(document.querySelectorAll('.choice'));
   cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){var on=o===c;o.setAttribute('aria-pressed',on?'true':'false');var x=document.getElementById(o.getAttribute('data-x'));if(x){x.hidden=!on;}});var panel=document.getElementById(c.getAttribute('data-x'));var first=panel&&panel.querySelector('input,textarea');(first||document.getElementById('f-name')).focus({preventScroll:true});});});
   form.addEventListener('submit',function(e){e.preventDefault();document.getElementById('formNote').hidden=false;});
