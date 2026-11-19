@@ -642,6 +642,26 @@ h2 .hl{white-space:nowrap}
 .extra.has-date{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
 .x-date[hidden]{display:none}
 @media (max-width:700px){.extra.has-date{grid-template-columns:minmax(0,1fr)}}
+/* 19 Nov (11): Why Coloradans Trust (live site section, minus the unverified "No competitor" claim) */
+.trust{background:var(--ink);color:var(--white)}
+.trust h2{color:var(--white)}
+.trust .hl{color:var(--white);background-image:linear-gradient(var(--gold),var(--gold))}
+.trust .eyebrow{color:#cfa865}  /* lighter tint of brand gold #a17c40 for contrast on the dark band */
+.trust__wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.trust__copy p{font-size:18px;line-height:1.7;margin-top:16px;color:rgba(255,255,255,.9)}
+.trust__copy .trust__fine{font-size:14px;color:rgba(255,255,255,.65);margin-top:10px}
+.trust__list{list-style:none;margin:0;padding:0}
+.trust__list li{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(20px,2.1vw,27px);line-height:1.25;padding:14px 0 14px 30px;border-bottom:1px solid rgba(255,255,255,.16)}
+.trust__list li + li::before{content:"+";position:absolute;left:4px;color:var(--gold);font-weight:800}
+.trust__close{margin:20px 0 22px;font-size:18px;color:var(--white)}
+.trust .btn--main{border-color:var(--white)}
+@media (max-width:960px){.trust__wrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){
+  .trust__copy p{font-size:16px;margin-top:12px}
+  .trust__list li{font-size:19px;padding:10px 0 10px 26px}
+  .trust__close{font-size:16px;margin:14px 0 16px}
+  .trust .btn{width:100%}
+}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,summary svg{transition:none}}
 </style>
 </head>
@@ -893,6 +913,27 @@ h2 .hl{white-space:nowrap}
         <a class="btn btn--main" href="#review">Free Case Review</a>
         <a class="btn btn--quiet" href="#miguel">Read Miguel's Story</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="band trust" id="why">
+  <div class="wrap trust__wrap">
+    <div class="trust__copy">
+      <p class="eyebrow">Since 1989</p>
+      <h2>Why Coloradans Trust <span class="hl">Miguel Martínez</span> Injury Lawyers</h2>
+      <p>Miguel Martínez has been fighting for Colorado families since 1989. That's over 35 years and more than 5,000 cases handled. In that time, his firm has recovered over $200 million for injured clients across Denver, Greeley, and the surrounding communities.</p>
+      <p class="trust__fine">Past results do not guarantee future outcomes.</p>
+    </div>
+    <div class="trust__combo">
+      <ul class="trust__list" aria-label="What Miguel Martínez brings to your case">
+        <li>Former-prosecutor trial skill</li>
+        <li>Immigration protection strategy</li>
+        <li>35 years of community trust</li>
+        <li lang="es">Se Habla Español</li>
+      </ul>
+      <p class="trust__close">That is why families who have the most to lose choose Miguel Martínez.</p>
+      <a class="btn btn--main" href="#review">Free Case Review</a>
     </div>
   </div>
 </section>
